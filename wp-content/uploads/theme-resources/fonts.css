@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'CormorantGaramond';
+    src: url('/wp-content/plugins/theme-resources/assets/fonts/CormorantGaramond-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CormorantGaramond';
+    src: url('/wp-content/plugins/theme-resources/assets/fonts/CormorantGaramond-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('/wp-content/plugins/theme-resources/assets/fonts/Manrope-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('/wp-content/plugins/theme-resources/assets/fonts/Manrope-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --font-heading: 'CormorantGaramond', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-accent: 'Manrope', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+}
+
+body {
+    font-family: var(--font-body);
+}
+
+.accent,
+.button,
+strong {
+    font-family: var(--font-accent);
+}

@@ -1,0 +1,110 @@
+.page-nav {
+    display: flex;
+    align-items: stretch;
+    margin-top: 5vh;
+}
+
+.page-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--theme-color-primary);
+    padding: 1em;
+    flex-grow: 1;
+    background: rgb(248, 248, 248);
+}
+
+.page-nav__link.active {
+    background: var(--theme-color-accent);
+}
+
+section.page-content {
+    padding-top: 0;
+}
+
+.page-content h2 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.page-content h3 {
+    font-size: 28px;
+}
+
+@media(max-width: 768px) {
+    .wp-block-group.num-row {
+        transform: none;
+    }
+
+    .wp-block-group.num-row {
+        transform: none;
+        justify-content: space-between;
+        gap: 0;
+    }
+
+    .wp-block-group.num-row * p:first-child {
+        font-size: 40px !important;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wp-block-group.num-row * p:nth-child(2) {
+        font-size: 20px !important;
+        font-weight: 500 !important;
+    }
+
+    .wp-block-group.num-row {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .wp-block-column.benefits-item {
+        padding-left: 0;
+        text-align: center;
+        border-left: none;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .wp-block-column.benefits-item:before {
+        content: '';
+        width: 75px;
+        height: 4px;
+        background: var(--theme-color-accent);
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .wp-block-group.num-row {
+        width: 100%;
+    }
+
+    .wp-block-group.num-row {
+        flex-direction: column;
+    }
+
+    .wp-block-group.num-row .wp-block-group {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .wp-block-group.num-row .wp-block-group {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .wp-block-group.num-row .wp-block-group {
+        margin-bottom: 2em;
+    }
+}

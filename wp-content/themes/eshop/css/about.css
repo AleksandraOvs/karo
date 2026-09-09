@@ -1,0 +1,204 @@
+.hero__inner {
+    background: var(--hero-gradient);
+    padding: 7vh 0;
+    color: #fff;
+}
+
+h1.hero__title {
+    color: var(--theme-color-light);
+    position: relative;
+    font-size: clamp(54px, 7vw, 7vw);
+    line-height: 100%;
+    font-weight: 400;
+    margin-bottom: 4vh;
+}
+
+h1.hero__title:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url(../imgs/svg/--star.svg) no-repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 13vw;
+}
+
+.hero__title.is-visible {
+    width: 48vw;
+}
+
+.hero__title span {
+    display: block;
+    font-size: clamp(54px, 4vw, 80px);
+    position: absolute;
+    right: 0;
+    bottom: -5vw;
+    color: var(--white);
+}
+
+.hero__inner .fixed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7vh;
+}
+
+.hero__description {
+    font-size: 18px;
+    line-height: 140%;
+    width: 45vw;
+    min-width: 500px;
+}
+
+/*LINKS SLIDER*/
+
+.links-slider__slide {
+    background: var(--green-gradient);
+    padding: 1em;
+    border-radius: 15px;
+    color: var(--white);
+}
+
+.links-slider .swiper-wrapper {
+    align-items: stretch;
+}
+
+.slider-links__title {
+    margin-bottom: 0;
+}
+
+.slider-links__description {
+    max-height: 89px;
+}
+
+.slider-links__description * {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    height: 89px;
+}
+
+.links-slider__slide {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.links-slider {
+    padding-bottom: 36px;
+}
+
+.swiper-pagination-bullet {
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    background: rgba(85, 88, 102, .7);
+    transition: all .5s var(--transition);
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 40px;
+    border-radius: 5px;
+    background: rgba(85, 88, 102, 1);
+}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+section.faq-section {
+    background: #F1F3F7;
+}
+
+.faq-items__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-items__question {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    align-items: flex-start;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.faq-items__question__icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-items__list li {
+    padding-bottom: .5em;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.faq-items__question__text {
+    text-align: left;
+}
+
+.faq-items__question__icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    padding: 3px;
+    border: 1px solid var(--theme-color-primary);
+    border-radius: 100%;
+}
+
+.faq-items__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.faq-items__item {
+    transition: all .5s var(--transition);
+    width: calc(50% - .5em);
+}
+
+.faq-items__item.active {
+    border-color: var(--theme-color-accent);
+}
+
+/* Горизонтальная линия */
+.faq-items__question__icon::before,
+
+/* Вертикальная линия */
+.faq-items__question__icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 2px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* Вертикальная линия */
+.faq-items__question__icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Открытый пункт — убираем вертикальную линию */
+.faq-items__item.active .faq-items__question__icon::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(0);
+}

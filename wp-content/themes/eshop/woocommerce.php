@@ -1,0 +1,247 @@
+<?php
+
+/**
+ * WooCommerce main template
+ *
+ * Используется для:
+ * – shop
+ * – product category
+ * – product tag
+ * – single product
+ * – cart / checkout / account
+ */
+
+defined('ABSPATH') || exit;
+
+get_header('shop');
+?>
+
+<?php
+/**
+ * Хуки WooCommerce для уведомлений, хлебных крошек и открытия контейнера
+ */
+do_action('woocommerce_before_main_content');
+?>
+
+<section class="page-title-block">
+    <div class="fixed-container">
+        <?php //site_breadcrumbs() 
+        ?>
+
+        <?php if (!is_product()): ?>
+            <h1 class="page-title" data-scroll-animation="fade-down">
+                <?= esc_html(woocommerce_page_title('', false)); ?>
+            </h1>
+        <?php endif; ?>
+
+
+    </div>
+</section>
+<?php //get_template_part('template-parts/page-header') 
+?>
+
+<?php
+if (is_shop()) {
+
+    echo '<div class="shop-header">';
+    echo '<div class="fixed-container">';
+    echo '<div class="shop-header__inner">';
+    /*
+     * ==========================================
+     * ВЫБОР КАТАЛОГА
+     * ==========================================
+     */
+
+    $categories = get_terms([
+        'taxonomy'   => 'product_cat',
+        'parent'     => 0,
+        'hide_empty' => false,
+    ]);
+
+    if (!empty($categories) && !is_wp_error($categories)) {
+
+        echo '<div class="shop-header__item shop-header__catalog">';
+
+        echo '<select 
+        class="shop-header__catalog-select" 
+          data-display="Выбрать каталог"
+        onchange="if(this.value) window.location.href=this.value;"
+    >';
+
+        echo '<option value="">Выбрать каталог</option>';
+
+
+        foreach ($categories as $cat) {
+
+            $cat_link = get_term_link(
+                $cat->term_id,
+                'product_cat'
+            );
+
+            if (is_wp_error($cat_link)) {
+                continue;
+            }
+
+            echo '<option value="' . esc_url($cat_link) . '">';
+            echo esc_html($cat->name);
+            echo '</option>';
+        }
+
+        echo '</select>';
+
+        echo '</div>';
+    }
+
+    /*
+     * ==========================================
+     * ИНДИВИДУАЛЬНЫЙ ПОДБОР
+     * ==========================================
+     */
+
+    echo '<div class="shop-header__item  shop-header__individual">';
+
+    echo '<button type="button" class="button shop-header__individual-button" data-popup="individual-selection">';
+    echo 'Индивидуальный подбор';
+    echo '</button>';
+    echo '<span class="shop-header__individual-hint">';
+    echo 'Здесь можно добавить поясняющую фразу, что значит «индивидуальный подбор»';
+    echo '</span>';
+
+    echo '</div>';
+
+    echo do_shortcode('[shop_filters]');
+    echo '</div>'; //end of shop-header__inner
+
+
+    //echo '<button class="toggle-filter">Фильтры</button>';
+
+
+
+    echo '</div>'; //end of fixed-container
+
+
+    echo '</div>';
+    // Показываем все товары
+    $args = [
+        'post_type'      => 'product',
+        'posts_per_page' => -1,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+    ];
+    $products = new WP_Query($args);
+
+    if ($products->have_posts()) : ?>
+
+        <div class="fixed-container">
+            <!-- Заголвоки для карточек товара -->
+            <ul class="products-nav">
+                <li>Форма</li>
+                <li>Вес (гр.)</li>
+                <li>Размер (мм.)</li>
+                <li>Kurgin Score</li>
+                <li>Цена</li>
+            </ul>
+
+            <?php
+            // Получаем количество колонок (2,3,4,5 и т.д.)
+            $columns = wc_get_loop_prop('columns');
+
+            // Фолбек (если вдруг не задано)
+            if (!$columns) {
+                $columns = 4;
+            }
+            ?>
+
+            <ul class="products products-<?php echo esc_attr($columns); ?>">
+                <?php while ($products->have_posts()) : $products->the_post(); ?>
+                    <?php wc_get_template_part('content', 'product'); ?>
+                <?php endwhile; ?>
+            </ul>
+        </div>
+
+
+        <?php endif;
+    wp_reset_postdata();
+    echo '</div>';
+} elseif (is_product_taxonomy()) {
+
+    $current_cat = get_queried_object();
+    $parent_id = $current_cat->term_id;
+
+    // Получаем дочерние категории
+    $categories = get_terms([
+        'taxonomy'   => 'product_cat',
+        'parent'     => $parent_id,
+        'hide_empty' => true,
+    ]);
+    echo '<div class="fixed-container">';
+
+    if (!empty($categories) && !is_wp_error($categories)) {
+        echo '<div class="categories-grid">';
+        foreach ($categories as $cat) {
+            $cat_link = get_term_link($cat);
+            if (!is_wp_error($cat_link)) {
+        ?>
+                <a class="category-item__link" href="<?php echo esc_url($cat_link); ?>">
+                    <div class="category-title hover-effect"><?php echo esc_html($cat->name); ?></div>
+                </a>
+        <?php
+            }
+        }
+        echo '</div>';
+    }
+    //echo do_shortcode('[shop_filters]');
+
+    // Показываем товары текущей категории
+    $args = [
+        'post_type'      => 'product',
+        'posts_per_page' => -1,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+        'tax_query'      => [
+            [
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $current_cat->term_id,
+            ]
+        ],
+    ];
+    $products = new WP_Query($args);
+
+    if ($products->have_posts()) : ?>
+        <?php
+        // Получаем количество колонок (2,3,4,5 и т.д.)
+        $columns = wc_get_loop_prop('columns');
+
+        // Фолбек (если вдруг не задано)
+        if (!$columns) {
+            $columns = 4;
+        }
+        ?>
+
+        <ul class="products products-<?php echo esc_attr($columns); ?>">
+            <?php while ($products->have_posts()) : $products->the_post(); ?>
+                <?php wc_get_template_part('content', 'product'); ?>
+            <?php endwhile; ?>
+        </ul>
+
+
+
+<?php endif;
+    wp_reset_postdata();
+    echo '</div>';
+} else {
+    // Для других страниц WooCommerce (cart, checkout, account)
+
+    woocommerce_content();
+}
+?>
+
+
+<?php
+/**
+ * Хуки WooCommerce для закрытия контейнера и других действий
+ */
+do_action('woocommerce_after_main_content');
+
+get_footer('shop');
