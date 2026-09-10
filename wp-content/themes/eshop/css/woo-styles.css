@@ -77,7 +77,7 @@ li.product h2.woocommerce-loop-product__title {
 .product-card__buttons>button,
 .custom-wishlist-btn {
     display: flex;
-    padding: 7px 20px;
+    padding: .5em 2em;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
@@ -87,6 +87,15 @@ li.product h2.woocommerce-loop-product__title {
     cursor: pointer;
     position: relative;
     transition: all .5s var(--transition);
+}
+
+.custom-wishlist-btn.added {
+    background: var(--theme-color-secondary);
+
+}
+
+.custom-wishlist-btn.added span svg path {
+    fill: var(--white);
 }
 
 .product-card__buttons>button:hover,
@@ -382,9 +391,9 @@ a.button.wc-forward:hover {
 .products-nav li {
     padding-bottom: 5px;
     border-bottom: 1px solid var(--theme-color-primary);
-    letter-spacing: 20%;
+    letter-spacing: 10%;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .product-card__attributes {
@@ -470,7 +479,7 @@ a.button.wc-forward:hover {
     align-items: stretch;
     background: #F1F3F7;
     padding: .5em;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .shop-header__inner .shop-header__item {

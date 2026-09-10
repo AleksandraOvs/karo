@@ -193,98 +193,128 @@ function custom_wishlist_shortcode()
 
             <div class="cart-flex__row wishlist-item">
 
-                <div class="cart-flex__col cart-flex__col--product">
-                    <div class="cart-product-item">
 
-                        <a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="product-thumb">
-                            <?php echo $product->get_image(); ?>
-                        </a>
 
-                        <div class="cart-product-item__summary">
 
-                            <a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="product-name">
-                                <?php echo esc_html($product->get_name()); ?>
-                            </a>
+                <!-- <a href="<?php //echo esc_url(get_permalink($product_id)); 
+                                ?>" class="product-thumb">
+                            <?php //echo $product->get_image(); 
+                            ?>
+                        </a> -->
 
-                            <div class="sku">
-                                Артикул: <?php echo esc_html($sku); ?>
-                            </div>
+                <div class="cart-product-item__summary">
 
-                        </div>
-                    </div>
-                </div>
+                    <a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="product-name">
+                        <?php echo esc_html($product->get_name()); ?>
+                    </a>
 
-                <div class="cart-flex__col cart-flex__col--price">
-
-                    <div class="cart-flex__col__label">
-                        Цена:
-                    </div>
-
-                    <span
-                        class="price"
-                        data-raw-price="<?php echo esc_attr($price); ?>">
-                        <?php echo $price_html; ?>
-                    </span>
-
-                </div>
-
-                <div class="cart-flex__col cart-flex__col--total">
-
-                    <div class="wishlist-cart-actions">
-
-                        <?php if ($in_cart) : ?>
-
-                            <a
-                                href="<?php echo esc_url(wc_get_cart_url()); ?>"
-                                class="button wishlist-in-cart">
-                                В корзине
-                            </a>
-
-                        <?php else : ?>
-
-                            <a
-                                href="<?php echo esc_url($product->add_to_cart_url()); ?>"
-                                class="button add_to_cart_button ajax_add_to_cart wishlist-add-to-cart"
-                                data-product_id="<?php echo esc_attr($product_id); ?>"
-                                data-quantity="1"
-                                rel="nofollow">
-                                В корзину
-                            </a>
-
-                        <?php endif; ?>
-
+                    <div class="sku">
+                        ID: <?php echo esc_html($sku); ?>
                     </div>
 
                 </div>
 
-                <div class="product-remove">
+                <ul class="wl-product-inner">
+
+                    <?php foreach ($product->get_attributes() as $attribute) : ?>
+
+                        <?php
+                        if (!$attribute->get_visible()) {
+                            continue;
+                        }
+
+                        $name = $attribute->get_name();
+                        $label = wc_attribute_label($name);
+
+                        if ($attribute->is_taxonomy()) {
+                            $values = wc_get_product_terms(
+                                $product_id,
+                                $name,
+                                [
+                                    'fields' => 'names',
+                                ]
+                            );
+
+                            $value = implode(', ', $values);
+                        } else {
+                            $value = implode(', ', $attribute->get_options());
+                        }
+
+                        if (!$value) {
+                            continue;
+                        }
+                        ?>
+
+                        <li class="wl-product-inner__item __attribute">
+
+                            <span class="product-attributes__name">
+                                <?php echo esc_html($label); ?>:
+                            </span>
+
+                            <p class="product-attributes__value">
+                                <?php echo esc_html($value); ?>
+                            </p>
+
+                        </li>
+
+                    <?php endforeach; ?>
+                    <li class="wl-product-inner__item __price">
+                        <span>
+                            Цена:
+                        </span>
+
+                        <p
+                            class="price"
+                            data-raw-price="<?php echo esc_attr($price); ?>">
+                            <?php echo $price_html; ?>
+                        </p>
+                    </li>
+
+                </ul>
+
+                <div class="wishlist-cart-actions">
+
+                    <button id="product-info-popup" class="button">Открыть карточку</button>
+
 
                     <button
                         class="custom-wishlist-btn added"
                         data-product_id="<?php echo esc_attr($product_id); ?>"
                         aria-label="Удалить из избранного">
 
-                        <span class="wishlist-icon">
-
-                            <svg
-                                width="29"
-                                height="26"
-                                viewBox="0 0 29 26"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19.9834 1C21.8169 1.00007 23.4892 1.6382 24.75 2.66895L24.9971 2.87988C26.3343 4.08409 27.1426 5.74037 27.1426 7.56152C27.1425 10.2866 25.8123 12.9936 23.6045 15.7686L23.1514 16.3242C20.8576 19.0761 17.913 21.7265 14.9033 24.4307V24.4316C14.4245 24.8621 13.7016 24.8523 13.2363 24.4287L13.2314 24.4238L10.9971 22.4043C8.79358 20.3905 6.70955 18.386 4.99023 16.3242L4.53711 15.7686C2.32944 12.9937 1.00007 10.2866 1 7.56152C1 5.73956 1.8084 4.08228 3.14648 2.88184L3.14844 2.88086C4.4316 1.72608 6.20631 1 8.15918 1C9.84003 1.00005 11.0995 1.37513 12.1807 2.09082L12.3945 2.23828C12.733 2.48229 13.0498 2.75975 13.3506 3.07227L14.0713 3.82129L14.792 3.07129C15.0925 2.75878 15.4094 2.48179 15.749 2.23828H15.75C16.8785 1.42685 18.1926 1 19.9834 1Z"
-                                    fill="#DC3545"
-                                    stroke="none" />
-                            </svg>
-
-                        </span>
+                        Удалить
 
                     </button>
 
+                    <?php if ($in_cart) : ?>
+
+                        <a
+                            href="<?php echo esc_url(wc_get_cart_url()); ?>"
+                            class="button wishlist-in-cart">
+                            В корзине
+                        </a>
+
+                    <?php else : ?>
+
+                        <a
+                            href="<?php echo esc_url($product->add_to_cart_url()); ?>"
+                            class="button add_to_cart_button ajax_add_to_cart wishlist-add-to-cart"
+                            data-product_id="<?php echo esc_attr($product_id); ?>"
+                            data-quantity="1"
+                            rel="nofollow">
+                            В корзину
+                        </a>
+
+                    <?php endif; ?>
+
                 </div>
 
+
+
             </div>
+
+
+
 
         <?php endforeach; ?>
 

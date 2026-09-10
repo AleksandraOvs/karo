@@ -83,6 +83,11 @@ body {
     overflow: clip;
 }
 
+.wrapper .page-content {
+    padding-bottom: 3vh;
+    padding-top: calc(80px + 7vh);
+}
+
 .main {
     flex: 1;
 }

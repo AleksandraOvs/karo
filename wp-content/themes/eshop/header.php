@@ -63,10 +63,18 @@
                             </p>
                         <?php endif; ?>
 
-                        <?php if ($site_description): ?>
+                        <?php if (!is_front_page()): ?>
+
                             <p class="site-description">
-                                <?= esc_html($site_description); ?>
+                                <?php echo esc_html(get_the_title()); ?>
                             </p>
+
+                        <?php elseif ($site_description): ?>
+
+                            <p class="site-description">
+                                <?php echo esc_html($site_description); ?>
+                            </p>
+
                         <?php endif; ?>
 
                     </a>
