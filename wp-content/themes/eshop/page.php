@@ -1,11 +1,12 @@
 <?php get_header() ?>
-<section class="page-title-block">
+<!-- <section class="page-title-block">
     <div class="fixed-container">
-        <?php site_breadcrumbs() ?>
+        <?php //site_breadcrumbs() 
+        ?>
 
 
     </div>
-</section>
+</section> -->
 
 <section class="page-content">
     <div class="fixed-container">
