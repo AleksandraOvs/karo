@@ -1919,14 +1919,6 @@ footer.footer * .menu {
 
 @media(max-width: 576px) {
 
-    .hero__title span {
-        display: block;
-        font-size: clamp(54px, 4vw, 80px);
-        position: relative;
-        right: 0;
-        bottom: unset;
-    }
-
     #menu-main {
         display: none;
     }

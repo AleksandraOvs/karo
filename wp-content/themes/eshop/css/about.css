@@ -202,3 +202,13 @@ section.faq-section {
     opacity: 0;
     transform: translate(-50%, -50%) rotate(90deg) scaleY(0);
 }
+
+@media (max-width: 576px) {
+    .hero__title span {
+        display: block;
+        font-size: clamp(54px, 4vw, 80px);
+        position: relative;
+        right: 0;
+        bottom: unset;
+    }
+}
