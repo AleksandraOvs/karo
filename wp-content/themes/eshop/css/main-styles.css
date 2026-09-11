@@ -1955,6 +1955,11 @@ footer.footer * .menu {
         flex: 1;
     }
 
+    .menu-item.current-menu-item {
+        background: #F1F3F7;
+        border-top: 3px solid var(--theme-color-secondary);
+    }
+
     .mob-menu ul li a span {
         display: none;
     }
@@ -1975,7 +1980,7 @@ footer.footer * .menu {
         align-items: center;
         justify-content: center;
         padding: 1em .5em;
-        border-top: 2px solid transparent;
+        border-top: 3px solid transparent;
         transition: all .5s var(--transition);
     }
 
