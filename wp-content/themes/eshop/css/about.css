@@ -204,6 +204,11 @@ section.faq-section {
 }
 
 @media (max-width: 576px) {
+
+    .hero__title.is-visible {
+        width: 100%;
+    }
+
     .hero__title span {
         display: block;
         font-size: clamp(54px, 4vw, 80px);
