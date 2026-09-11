@@ -1253,10 +1253,16 @@ h2.woocommerce-loop-product__title {
 @media (max-width: 480px) {
     .product-card__buttons {
         flex-wrap: wrap;
+        margin-top: 3vh;
     }
 
     .product-card__buttons .product-card__cart {
         width: 100%;
+        flex: unset;
+    }
+
+    .product-card__buttons .product-card__cart a.button {
+        max-width: 100%;
     }
 }
 
