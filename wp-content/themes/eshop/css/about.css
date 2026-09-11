@@ -205,6 +205,14 @@ section.faq-section {
 
 @media (max-width: 576px) {
 
+    .hero {
+        padding-top: 0;
+    }
+
+    .hero__inner {
+        padding: 20vh 0;
+    }
+
     .hero__title.is-visible {
         width: 100%;
     }
