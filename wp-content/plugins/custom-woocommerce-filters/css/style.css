@@ -1,3 +1,13 @@
+.nice-select {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2;
+  text-align: left !important;
+  white-space: nowrap;
+}
+
 .sidebar-area-wrapper {
   position: relative;
   padding: 0;
