@@ -966,4 +966,8 @@
     width: 100%;
   }
 
+  .nice-select.shop-header__catalog-select {
+    padding: 0;
+  }
+
 }
