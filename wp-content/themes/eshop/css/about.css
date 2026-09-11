@@ -225,3 +225,9 @@ section.faq-section {
         bottom: unset;
     }
 }
+
+@media (max-width: 480px) {
+    .hero .container {
+        padding: 0;
+    }
+}
