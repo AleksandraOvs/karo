@@ -28,7 +28,7 @@ do_action('woocommerce_before_main_content');
         <?php //site_breadcrumbs() 
         ?>
 
-        <?php if (!is_product()): ?>
+        <?php if (is_product()): ?>
             <h1 class="page-title" data-scroll-animation="fade-down">
                 <?= esc_html(woocommerce_page_title('', false)); ?>
             </h1>
