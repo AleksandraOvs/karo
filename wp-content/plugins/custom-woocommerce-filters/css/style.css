@@ -6,6 +6,8 @@
   line-height: 1.2;
   text-align: left !important;
   white-space: unset;
+  align-items: center;
+  display: flex;
 }
 
 .sidebar-area-wrapper {
