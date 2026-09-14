@@ -56,10 +56,8 @@
 
      </button>
 
-     <?php custom_add_to_wishlist_button();
-        ?>
-     <?php echo do_shortcode('[aura_compare_button]');
-        ?>
+     <?php custom_add_to_wishlist_button(); ?>
+     <?php echo do_shortcode('[aura_compare_button]'); ?>
      <div class="product-card__cart">
          <?php woocommerce_template_loop_add_to_cart(); ?>
      </div>

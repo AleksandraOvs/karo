@@ -24,7 +24,7 @@ add_action('wp_enqueue_scripts', function () {
 // --------------------------------------------------
 // КНОПКА ДОБАВИТЬ В ИЗБРАННОЕ
 // --------------------------------------------------
-add_action('woocommerce_after_shop_loop_item', 'custom_add_to_wishlist_button', 15);
+//add_action('woocommerce_after_shop_loop_item', 'custom_add_to_wishlist_button', 15);
 add_action('woocommerce_single_product_summary', 'custom_add_to_wishlist_button', 32);
 
 function custom_add_to_wishlist_button()
@@ -50,10 +50,10 @@ function custom_add_to_wishlist_button()
 
 ';
 
-    // echo '<button class="custom-wishlist-btn ' . esc_attr($added) . '" data-product_id="' . esc_attr($product_id) . '">
-    //         <span class="wishlist-icon">' . $wishlist_icon . '</span>
-    //         <span class="wishlist-text">' . ($added ? 'В избранном' : 'Добавить в избранное') . '</span>
-    //       </button>';
+    echo '<button class="custom-wishlist-btn ' . esc_attr($added) . '" data-product_id="' . esc_attr($product_id) . '">
+            <span class="wishlist-icon">' . $wishlist_icon . '</span>
+            <span class="wishlist-text">' . ($added ? 'В избранном' : 'Добавить в избранное') . '</span>
+          </button>';
 }
 
 // --------------------------------------------------
