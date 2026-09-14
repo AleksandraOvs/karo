@@ -24,7 +24,7 @@ add_action('wp_enqueue_scripts', function () {
 // --------------------------------------------------
 // КНОПКА ДОБАВИТЬ В ИЗБРАННОЕ
 // --------------------------------------------------
-//add_action('woocommerce_after_shop_loop_item', 'custom_add_to_wishlist_button', 15);
+add_action('woocommerce_after_shop_loop_item', 'custom_add_to_wishlist_button', 15);
 add_action('woocommerce_single_product_summary', 'custom_add_to_wishlist_button', 32);
 
 function custom_add_to_wishlist_button()
@@ -71,31 +71,118 @@ function custom_toggle_wishlist()
     $product_id = intval($_POST['product_id']);
     $wishlist = [];
 
+    // Получаем текущий wishlist
     if (is_user_logged_in()) {
+
         $user_id = get_current_user_id();
-        $wishlist = get_user_meta($user_id, 'custom_wishlist', true) ?: [];
+
+        $wishlist = get_user_meta(
+            $user_id,
+            'custom_wishlist',
+            true
+        );
+
+        if (!is_array($wishlist)) {
+            $wishlist = [];
+        }
     } elseif (!empty($_COOKIE['custom_wishlist'])) {
-        $wishlist = json_decode(stripslashes($_COOKIE['custom_wishlist']), true);
-        if (!is_array($wishlist)) $wishlist = [];
+
+        $wishlist = json_decode(
+            stripslashes($_COOKIE['custom_wishlist']),
+            true
+        );
+
+        if (!is_array($wishlist)) {
+            $wishlist = [];
+        }
     }
 
-    if (in_array($product_id, $wishlist)) {
-        $wishlist = array_values(array_diff($wishlist, [$product_id]));
+    // Приводим ID к числам и убираем дубли
+    $wishlist = array_values(
+        array_unique(
+            array_map('intval', $wishlist)
+        )
+    );
+
+    // Добавляем / удаляем товар
+    if (in_array($product_id, $wishlist, true)) {
+
+        $wishlist = array_values(
+            array_diff($wishlist, [$product_id])
+        );
+
         $status = 'removed';
     } else {
+
         $wishlist[] = $product_id;
-        $wishlist = array_unique($wishlist);
+
+        $wishlist = array_values(
+            array_unique($wishlist)
+        );
+
         $status = 'added';
     }
 
-    // сохраняем
+    // Сохраняем
     if (is_user_logged_in()) {
-        update_user_meta(get_current_user_id(), 'custom_wishlist', $wishlist);
+
+        update_user_meta(
+            get_current_user_id(),
+            'custom_wishlist',
+            $wishlist
+        );
     } else {
-        setcookie('custom_wishlist', wp_json_encode(array_values($wishlist)), time() + 30 * DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN);
+
+        setcookie(
+            'custom_wishlist',
+            wp_json_encode($wishlist),
+            time() + 30 * DAY_IN_SECONDS,
+            COOKIEPATH,
+            COOKIE_DOMAIN
+        );
     }
 
-    wp_send_json_success(['status' => $status]);
+    // ВОЗВРАЩАЕМ АКТУАЛЬНОЕ КОЛИЧЕСТВО
+    wp_send_json_success([
+        'status' => $status,
+        'count'  => count($wishlist),
+    ]);
+}
+// --------------------------------------------------
+// AJAX ПОЛУЧЕНИЕ КОЛИЧЕСТВА ИЗБРАННЫХ
+// --------------------------------------------------
+add_action('wp_ajax_custom_get_wishlist_count', 'custom_get_wishlist_count');
+add_action('wp_ajax_nopriv_custom_get_wishlist_count', 'custom_get_wishlist_count');
+
+function custom_get_wishlist_count()
+{
+    $wishlist = [];
+
+    if (is_user_logged_in()) {
+
+        $wishlist = get_user_meta(
+            get_current_user_id(),
+            'custom_wishlist',
+            true
+        ) ?: [];
+    } elseif (!empty($_COOKIE['custom_wishlist'])) {
+
+        $wishlist = json_decode(
+            stripslashes($_COOKIE['custom_wishlist']),
+            true
+        );
+
+        if (!is_array($wishlist)) {
+            $wishlist = [];
+        }
+    }
+
+    // На всякий случай оставляем только уникальные ID
+    $wishlist = array_unique(array_map('intval', $wishlist));
+
+    wp_send_json_success([
+        'count' => count($wishlist)
+    ]);
 }
 
 // --------------------------------------------------

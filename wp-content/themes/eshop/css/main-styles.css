@@ -408,6 +408,10 @@ p.site-name {
     display: none;
 }
 
+#menu-main li {
+    position: relative;
+}
+
 header .fixed-container {
     display: flex;
     justify-content: space-between;
@@ -1953,6 +1957,10 @@ footer.footer * .menu {
         width: 100%;
         display: flex;
         flex: 1;
+    }
+
+    .main-menu li {
+        position: relative;
     }
 
     .menu-item.current-menu-item {

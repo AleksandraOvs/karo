@@ -366,6 +366,21 @@
     text-align: center;
 }
 
+.wishlist-counter {
+    width: 18px;
+    height: 18px;
+    background: var(--theme-color-green);
+    color: #fff;
+    position: absolute;
+    top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: -10px;
+    border-radius: 100%;
+    font-size: 12px;
+}
+
 @media(max-width: 768px) {
 
     .wl-product-inner {
@@ -381,6 +396,24 @@
         flex: 1;
         max-width: unset;
     }
+}
+
+@media (max-width: 576px) {
+    .wishlist-counter {
+        width: 18px;
+        height: 18px;
+        background: var(--theme-color-green);
+        color: #fff;
+        position: absolute;
+        top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 7px;
+        border-radius: 100%;
+        font-size: 12px;
+    }
+
 }
 
 @media (max-width: 480px) {
