@@ -50,10 +50,10 @@ function custom_add_to_wishlist_button()
 
 ';
 
-    echo '<button class="custom-wishlist-btn ' . esc_attr($added) . '" data-product_id="' . esc_attr($product_id) . '">
-            <span class="wishlist-icon">' . $wishlist_icon . '</span>
-            <span class="wishlist-text">' . ($added ? 'В избранном' : 'Добавить в избранное') . '</span>
-          </button>';
+    // echo '<button class="custom-wishlist-btn ' . esc_attr($added) . '" data-product_id="' . esc_attr($product_id) . '">
+    //         <span class="wishlist-icon">' . $wishlist_icon . '</span>
+    //         <span class="wishlist-text">' . ($added ? 'В избранном' : 'Добавить в избранное') . '</span>
+    //       </button>';
 }
 
 // --------------------------------------------------
