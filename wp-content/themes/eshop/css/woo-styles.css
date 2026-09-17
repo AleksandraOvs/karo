@@ -731,7 +731,7 @@ button.button.filter-toggle:hover {
 
 .product-title-block {
     margin-bottom: 2vh;
-    margin-top: 7vh;
+    margin-top: 0;
 }
 
 .product-title-block .product-title {
