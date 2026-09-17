@@ -65,16 +65,37 @@ document.addEventListener('click', function (e) {
 
     }
 
-    navigator.clipboard.writeText(input.value)
-        .then(copied)
-        .catch(() => {
+    function copyFallback() {
 
-            input.select();
-            document.execCommand('copy');
+        input.focus();
+        input.select();
+        input.setSelectionRange(0, input.value.length);
 
-            copied();
+        try {
+            const success = document.execCommand('copy');
 
-        });
+            if (success) {
+                copied();
+            }
+        } catch (error) {
+            console.error('Не удалось скопировать ссылку:', error);
+        }
+
+    }
+
+    // Современный Clipboard API
+    if (navigator.clipboard && window.isSecureContext) {
+
+        navigator.clipboard.writeText(input.value)
+            .then(copied)
+            .catch(copyFallback);
+
+    } else {
+
+        // HTTP / старые браузеры
+        copyFallback();
+
+    }
 
 });
 
@@ -101,24 +122,3 @@ document.addEventListener('click', function (e) {
 
 });
 
-document.addEventListener('click', function (e) {
-
-    const button = e.target.closest('.share-popup__native');
-
-    if (!button) {
-        return;
-    }
-
-    const popup = button.closest('.share-popup');
-    const input = popup.querySelector('.share-popup__input');
-
-    if (!navigator.share) {
-        return;
-    }
-
-    navigator.share({
-        title: document.title,
-        url: input.value
-    });
-
-});

@@ -50,7 +50,11 @@
                 <?php echo $svg_email; ?>
                 <span>Электронная почта</span>
             </a>
-
+            <button
+                type="button"
+                class="share-popup__link share-popup__native">
+                <span>Поделиться</span>
+            </button>
         </div>
 
 
