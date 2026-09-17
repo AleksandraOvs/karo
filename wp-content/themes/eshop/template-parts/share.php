@@ -52,7 +52,7 @@
             </a>
             <button
                 type="button"
-                class="share-popup__link share-native">
+                class="share-popup__link share-popup__native">
                 <span>Поделиться</span>
             </button>
         </div>
