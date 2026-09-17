@@ -134,6 +134,18 @@ add_action('carbon_fields_register_fields', function () {
 
     Container::make('theme_options', 'Контакты')
         ->add_tab('Контакты', [
+
+            Field::make('text', 'phone_num', 'Номер телефона')
+                ->set_width(50),
+
+            Field::make('text', 'phone_num_link', 'Ссылка номера телефона')
+                ->set_width(50),
+
+            Field::make('rich_text', 'product_description', 'Текст для блока товара "Запросить условия"')
+                ->set_width(50),
+
+
+
             Field::make('complex', 'messengers', 'Мессенджеры')
                 ->set_layout('tabbed-vertical')
                 ->setup_labels([

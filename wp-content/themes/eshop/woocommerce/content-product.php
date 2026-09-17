@@ -4,9 +4,12 @@ defined('ABSPATH') || exit;
 
 global $product;
 
-if (! is_a($product, WC_Product::class) || ! $product->is_visible()) {
+if (! $product instanceof WC_Product) {
     return;
 }
+
+$is_popup = ! empty($args['is_popup']);
+
 ?>
 
 <?php
@@ -19,84 +22,40 @@ $compare_img = '<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmln
 <li <?php wc_product_class('', $product); ?>>
 
     <?php
-    // Открываем ссылку товара
     do_action('woocommerce_before_shop_loop_item');
+    ?>
 
-    // Картинка
-    //do_action('woocommerce_before_shop_loop_item_title');
-
-    // Название
-    //do_action('woocommerce_shop_loop_item_title');
-
-    // Закрываем ссылку товара
+    <?php
     do_action('woocommerce_after_shop_loop_item');
     ?>
 
-
-
     <div class="product-card__attributes">
 
-        <div class="product-card__attributes-row product-card__attributes-row--specs">
-
-            <div class="product-card__attribute">
-                <!-- <span class="product-card__attribute-label">Форма</span> -->
-                <span class="product-card__attribute-value">
-                    <?php
-                    $form = $product->get_attribute('pa_form');
-                    echo $form ? esc_html($form) : '—';
-                    ?>
-                </span>
-            </div>
-
-            <div class="product-card__attribute">
-                <!-- <span class="product-card__attribute-label">Вес</span> -->
-                <span class="product-card__attribute-value">
-                    <?php
-                    $weight = $product->get_attribute('pa_weight-gr');
-                    echo $weight ? esc_html($weight) : '—';
-                    ?>
-                </span>
-            </div>
-
-            <div class="product-card__attribute">
-                <!-- <span class="product-card__attribute-label">Размер</span> -->
-                <span class="product-card__attribute-value">
-                    <?php
-                    $size = $product->get_attribute('pa_size-mm');
-                    echo $size ? esc_html($size) : '—';
-                    ?>
-                </span>
-            </div>
-
-            <div class="product-card__attribute">
-                <!-- <span class="product-card__attribute-label">Kurgin Score</span> -->
-                <span class="product-card__attribute-value">
-                    <?php
-                    $kurgin_score = $product->get_attribute('pa_kurgin-score');
-                    echo $kurgin_score ? esc_html($kurgin_score) : '—';
-                    ?>
-                </span>
-            </div>
-
-            <div class="product-card__attribute product-card__attribute--price">
-                <!-- <span class="product-card__attribute-label">Цена</span> -->
-                <span class="product-card__attribute-value">
-                    <?php woocommerce_template_loop_price(); ?>
-                </span>
-            </div>
-
-        </div>
+        <?php
+        get_template_part('woocommerce/content-product-data');
+        ?>
 
         <div class="product-card__attributes-row product-card__attributes-row--actions">
 
             <div class="product-card__sku">
-                <span class="product-card__sku-label">ID:</span>
-                <span class="product-card__sku-value">
-                    <?php echo $product->get_sku() ? esc_html($product->get_sku()) : '—'; ?>
+
+                <span class="product-card__sku-label">
+                    ID:
                 </span>
+
+                <span class="product-card__sku-value">
+                    <?php
+                    echo $product->get_sku()
+                        ? esc_html($product->get_sku())
+                        : '—';
+                    ?>
+                </span>
+
             </div>
 
-            <?php get_template_part('template-parts/buttons'); ?>
+            <?php
+            get_template_part('template-parts/buttons');
+            ?>
 
         </div>
 

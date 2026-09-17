@@ -16,7 +16,7 @@
             color-mix(in srgb, var(--theme-color-secondary), #000 35%) 100%);
     --green-gradient: linear-gradient(45deg,
             var(--theme-color-green) 0%,
-            color-mix(in srgb, var(--theme-color-secondary), #000 35%) 100%);
+            color-mix(in srgb, #0C3120, #000 35%) 100%);
     /* Контейнеры по умолчанию */
     --container-width: 1920px;
     --fixed-container-width: 1080px;
@@ -159,9 +159,10 @@ button {
     transition: all .5s var(--transition);
 }
 
-.button,
+.woocommerce .button,
 .button.single_add_to_cart_button,
-.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button {
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button,
+a.button.product_type_simple {
     padding: 10px 30px;
     font-weight: 400;
     border-radius: 3px;
@@ -173,6 +174,7 @@ button {
     min-width: max-content;
     max-width: 280px;
     transition: all .5s var(--transition);
+    gap: .5em;
 }
 
 .button.button-light:hover {
@@ -1534,6 +1536,115 @@ footer.footer * .menu {
 
 .scroll-top:hover svg path {
     fill: var(--white);
+}
+
+/* POPUP LOADER */
+.product-info-popup__loader {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto;
+    position: absolute;
+    top: calc(50% - 28px);
+    left: calc(50% - 28px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #213B67;
+}
+
+.product-info-popup__diamond {
+    width: 27px;
+    height: 24px;
+
+    overflow: visible;
+
+    animation: diamond-breathe 2.4s ease-in-out infinite;
+}
+
+
+/*
+ * Блик
+ */
+
+.product-info-popup__diamond-shine {
+    opacity: 0;
+
+    stroke: rgba(255, 255, 255, 0.9);
+
+    stroke-dasharray: 6 46;
+    stroke-dashoffset: 52;
+
+    animation: diamond-shine 2.4s ease-in-out infinite;
+}
+
+
+/*
+ * Лёгкое "дыхание" алмаза
+ */
+
+@keyframes diamond-breathe {
+
+    0%,
+    100% {
+        transform: scale(0.96);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+}
+
+
+/*
+ * Блик проходит по граням
+ */
+
+@keyframes diamond-shine {
+
+    0% {
+        opacity: 0;
+        stroke-dashoffset: 52;
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    45% {
+        opacity: 0.9;
+    }
+
+    60% {
+        opacity: 0;
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        opacity: 0;
+        stroke-dashoffset: 0;
+    }
+
+}
+
+.f-button.is-close-button {
+    --f-button-width: var(--f-close-button-width);
+    --f-button-height: var(--f-close-button-height);
+    --f-button-border-radius: var(--f-close-border-radius);
+    --f-button-color: var(--theme-color-primary);
+    --f-button-hover-color: var(--f-close-button-hover-color);
+    --f-button-bg: var(--f-close-button-bg);
+    --f-button-hover-bg: var(--f-close-button-hover-bg);
+    --f-button-active-bg: var(--f-close-button-active-bg);
+    --f-button-svg-width: var(--f-close-button-svg-width);
+    --f-button-svg-height: var(--f-close-button-svg-height);
+    --f-button-svg-stroke-width: var(--f-close-button-svg-stroke-width);
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    z-index: 10;
 }
 
 @media(max-width: 1200px) {
