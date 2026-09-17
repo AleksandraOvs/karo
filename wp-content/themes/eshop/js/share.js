@@ -100,42 +100,16 @@ document.addEventListener('click', function (e) {
 });
 
 
-document.addEventListener('click', function (e) {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const button = e.target.closest('.share-popup__native');
+    const nativeShareButtons = document.querySelectorAll(
+        '.share-popup__native'
+    );
 
-    if (!button) {
-        return;
-    }
-
-    const popup = button.closest('.share-popup');
-    const input = popup.querySelector('.share-popup__input');
-
-    if (!input || !input.value) {
-        return;
-    }
-
-    if (navigator.share) {
-
-        navigator.share({
-            title: 'Посмотрите этот товар',
-            text: 'Посмотрите этот товар:',
-            url: input.value
-        })
-            .catch(function (error) {
-
-                // Пользователь просто закрыл системное меню
-                if (error.name !== 'AbortError') {
-                    console.error('Ошибка Share API:', error);
-                }
-
-            });
-
-    } else {
-
-        console.log('Web Share API не поддерживается');
-
+    if (!navigator.share) {
+        nativeShareButtons.forEach(function (button) {
+            button.remove();
+        });
     }
 
 });
-
