@@ -159,7 +159,7 @@ button {
     transition: all .5s var(--transition);
 }
 
-.woocommerce .button,
+.button,
 .button.single_add_to_cart_button,
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button,
 a.button.product_type_simple {

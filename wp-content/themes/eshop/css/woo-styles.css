@@ -330,6 +330,32 @@ li.product h2.woocommerce-loop-product__title {
     object-position: center;
 }
 
+.product-inner__content__col form.cart,
+.product-inner__content__col form.cart button.button {
+    width: 280px;
+    height: 40px;
+}
+
+.product-card__info.--share.button {
+    width: 280px;
+    border: 1px solid var(--theme-color-accent);
+}
+
+.product-card__info.--share.button {
+    width: 280px;
+    background: transparent;
+    color: var(--theme-color-accent);
+    border: 1px solid var(--theme-color-accent);
+    height: 40px;
+}
+
+.product-card__info.--share.button svg path {
+    transition: all .5s var(--transition);
+}
+
+.product-card__info.--share.button:hover svg path {
+    fill: #fff;
+}
 
 /*POPUP PRODUCT*/
 .popup-product__item {
@@ -1044,9 +1070,8 @@ h2.woocommerce-loop-product__title {
     }
 
     .product-inner__content__col._buy-col {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
+        align-items: center;
+        text-align: center;
     }
 
     .product-inner__content__col._buy-col .product-quantity {
@@ -1265,11 +1290,6 @@ h2.woocommerce-loop-product__title {
 
     .product-inner__content__col._buy-col {
         justify-content: center;
-    }
-
-    .product-inner__content__col._buy-col form button,
-    .product-inner__content__col._buy-col .product-buy-one-click {
-        max-width: 200px;
     }
 
     .cart.product-buy-form {
