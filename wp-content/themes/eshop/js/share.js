@@ -111,14 +111,31 @@ document.addEventListener('click', function (e) {
     const popup = button.closest('.share-popup');
     const input = popup.querySelector('.share-popup__input');
 
-    if (!navigator.share) {
+    if (!input || !input.value) {
         return;
     }
 
-    navigator.share({
-        title: document.title,
-        url: input.value
-    });
+    if (navigator.share) {
+
+        navigator.share({
+            title: 'Посмотрите этот товар',
+            text: 'Посмотрите этот товар:',
+            url: input.value
+        })
+            .catch(function (error) {
+
+                // Пользователь просто закрыл системное меню
+                if (error.name !== 'AbortError') {
+                    console.error('Ошибка Share API:', error);
+                }
+
+            });
+
+    } else {
+
+        console.log('Web Share API не поддерживается');
+
+    }
 
 });
 
