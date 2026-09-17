@@ -1401,7 +1401,7 @@ input.wpcf7-form-control {
 .footer {
     padding-top: 7vh;
     padding-bottom: 10vh;
-    background: var(--theme-color-primary);
+    background: var(--green-gradient);
 }
 
 
