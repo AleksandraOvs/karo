@@ -63,7 +63,7 @@ if (!empty($cross_sell_ids)) {
 
         <section class="single-product__cross-sells">
 
-            <div class="container">
+            <div class="fixed-container">
 
                 <div class="relative-products__head">
                     <h2 class="small-heading">Сопутствующие товары</h2>
@@ -212,56 +212,42 @@ if ($upsells_query->have_posts()) :
 
     <section class="single-product__related">
 
-        <div class="container">
+        <div class="fixed-container">
 
             <div class="relative-products__head">
                 <h2 class="small-heading">Похожие товары</h2>
             </div>
 
-            <div class="swiper related-products-slider">
 
-                <div class="swiper-wrapper">
+            <!-- Заголвоки для карточек товара -->
+            <ul class="products-nav">
+                <li>Форма</li>
+                <li>Вес (гр.)</li>
+                <li>Размер (мм.)</li>
+                <li>Kurgin Score</li>
+                <li>Цена</li>
+            </ul>
+
+            <ul class="products products-4">
+                <?php
+                while ($upsells_query->have_posts()) :
+                    $upsells_query->the_post();
+                ?>
+
+
 
                     <?php
-                    while ($upsells_query->have_posts()) :
-                        $upsells_query->the_post();
+                    /**
+                     * Используем ту же карточку товара,
+                     * что и в каталоге.
+                     */
+                    wc_get_template_part('content', 'product');
                     ?>
 
-                        <div class="swiper-slide">
 
-                            <?php
-                            /**
-                             * Используем ту же карточку товара,
-                             * что и в каталоге.
-                             */
-                            wc_get_template_part('content', 'product');
-                            ?>
 
-                        </div>
-
-                    <?php endwhile; ?>
-
-                </div>
-
-                <!-- Управление слайдером -->
-                <div class="swiper-controls">
-
-                    <div class="swiper-arrows">
-
-                        <div class="swiper-button-prev">
-                            <?php echo $prev ?>
-                        </div>
-
-                        <div class="swiper-button-next">
-                            <?php echo $next ?>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+                <?php endwhile; ?>
+            </ul>
         </div>
 
     </section>

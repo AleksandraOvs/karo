@@ -2,6 +2,7 @@
 defined('ABSPATH') || exit;
 
 global $product;
+$product_id = $product->get_id();
 
 do_action('woocommerce_before_single_product');
 
@@ -16,7 +17,7 @@ if (post_password_required()) {
     <!-- <h1 class="product-title"><?php //the_title(); 
                                     ?></h1> -->
 
-    <div class="container">
+    <div class="fixed-container">
         <div class="product-title-block">
             <h1 class="product-title">
                 <?php the_title(); ?>
@@ -30,58 +31,6 @@ if (post_password_required()) {
                 <?php do_action('woocommerce_before_single_product_summary'); ?>
             </div>
             <div class="single-product__inner__content">
-
-                <div class="product-inner__content__col _info-col">
-
-                    <div class="product-card__stock">
-
-                        <?php if ($product->managing_stock() && $product->get_stock_quantity() !== null) : ?>
-
-                            <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M6.21 15.54L0 9.33L2.83 6.5L6.21 9.89L16.09 0L18.92 2.83L6.21 15.54Z"
-                                    fill="#53B423" />
-                            </svg>
-
-                            <span>
-                                На складе <?php echo esc_html($product->get_stock_quantity()); ?> шт.
-                            </span>
-
-                        <?php else : ?>
-
-                            <span>
-                                <?php echo esc_html($product->is_in_stock() ? 'В наличии' : 'Нет в наличии'); ?>
-                            </span>
-
-                        <?php endif; ?>
-
-                    </div>
-
-                    <div class="product-sku">
-                        Код товара:
-                        <?php echo esc_html($product->get_sku() ?: '—'); ?>
-                    </div>
-
-                    <?php
-                    $brands = wp_get_post_terms(
-                        $product->get_id(),
-                        'product_brand'
-                    );
-
-                    $brand_name = '—';
-
-                    if (!is_wp_error($brands) && !empty($brands)) {
-                        $brand_name = $brands[0]->name;
-                    }
-                    ?>
-
-                    <div class="product-brand">
-                        Бренд: <?php echo esc_html($brand_name); ?>
-                    </div>
-
-                </div>
-
-
                 <div class="product-inner__content__col _buy-col">
 
                     <div class="product-card__price">
@@ -145,99 +94,80 @@ if (post_password_required()) {
 
                     <?php endif; ?>
 
-
                     <button
                         type="button"
-                        class="button button-black product-buy-one-click"
-                        data-product-id="<?php echo esc_attr($product->get_id()); ?>">
-                        Купить в 1 клик
+                        class="share-product"
+                        data-product_id="<?php echo esc_attr($product_id); ?>"
+                        data-product_url="<?php echo esc_url(get_permalink($product_id)); ?>">
+                        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.7 4.92L5.81 8.94C5.93 9.27 6 9.63 6 10C6 10.37 5.93 10.73 5.81 11.06L12.7 15.08C13.094 14.6059 13.6247 14.265 14.2197 14.1036C14.8146 13.9422 15.4449 13.9683 16.0245 14.1782C16.604 14.3882 17.1048 14.7718 17.4583 15.2768C17.8118 15.7818 18.001 16.3836 18 17C18 18.66 16.66 20 15 20C13.34 20 12 18.66 12 17C12 16.63 12.07 16.27 12.19 15.94L5.3 11.92C4.90596 12.3941 4.37528 12.735 3.78033 12.8964C3.18538 13.0578 2.55514 13.0317 1.97555 12.8218C1.39597 12.6118 0.895254 12.2282 0.541708 11.7232C0.188163 11.2182 -0.00100561 10.6164 4.02049e-06 10C-0.00100561 9.38356 0.188163 8.7818 0.541708 8.27682C0.895254 7.77183 1.39597 7.3882 1.97555 7.17823C2.55514 6.96827 3.18538 6.9422 3.78033 7.10358C4.37528 7.26496 4.90596 7.60594 5.3 8.08L12.19 4.06C12.07 3.73 12 3.37 12 3C12 1.34 13.34 0 15 0C16.66 0 18 1.34 18 3C18.001 3.61644 17.8118 4.2182 17.4583 4.72318C17.1048 5.22817 16.604 5.6118 16.0245 5.82177C15.4449 6.03173 14.8146 6.0578 14.2197 5.89642C13.6247 5.73504 13.094 5.39406 12.7 4.92ZM15 19C16.11 19 17 18.11 17 17C17 15.89 16.11 15 15 15C13.89 15 13 15.9 13 17C13 18.1 13.9 19 15 19ZM3 12C4.11 12 5 11.11 5 10C5 8.89 4.11 8 3 8C1.89 8 1 8.9 1 10C1 11.1 1.89 12 3 12ZM15 5C16.11 5 17 4.11 17 3C17 1.89 16.11 1 15 1C13.89 1 13 1.9 13 3C13 4.1 13.9 5 15 5Z" fill="#213B67" />
+                        </svg>
+                        <span>Поделиться</span>
                     </button>
 
                 </div>
 
-                <?php
-                $order_benefits = get_field('order_benefits', 'option');
-                ?>
+                <div class="product-inner__content__col _info-col">
 
-                <?php if ($order_benefits): ?>
-                    <div class="product-inner__content__col _benefits-col">
-                        <h3>Преимущества заказа</h3>
-                        <ul class="order-benefits">
-
-                            <?php foreach ($order_benefits as $benefit): ?>
-
-                                <?php
-                                $icon = $benefit['benefit_icon'] ?? '';
-                                $text = $benefit['benefit_text'] ?? '';
-                                ?>
-
-                                <li class="order-benefits__item">
-
-                                    <?php if ($icon): ?>
-
-                                        <?php
-                                        if (is_array($icon)) {
-                                            $icon_url = $icon['url'] ?? '';
-                                            $icon_alt = $icon['alt'] ?? '';
-                                        } else {
-                                            $icon_url = wp_get_attachment_image_url($icon, 'full');
-                                            $icon_alt = get_post_meta(
-                                                $icon,
-                                                '_wp_attachment_image_alt',
-                                                true
-                                            );
-                                        }
-                                        ?>
-
-                                        <?php if ($icon_url): ?>
-
-                                            <img
-                                                src="<?= esc_url($icon_url); ?>"
-                                                alt="<?= esc_attr($icon_alt); ?>"
-                                                class="order-benefits__item__icon">
-
-                                        <?php endif; ?>
-
-                                    <?php else: ?>
-
-                                        <svg
-                                            class="order-benefits__item__icon"
-                                            width="19"
-                                            height="16"
-                                            viewBox="0 0 19 16"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6.21 15.54L0 9.33L2.83 6.5L6.21 9.89L16.09 0L18.92 2.83L6.21 15.54Z"
-                                                fill="#FFCD1A" />
-                                        </svg>
-
-                                    <?php endif; ?>
-
-
-                                    <?php if ($text): ?>
-
-                                        <span class="order-benefits__item__text">
-                                            <?= esc_html($text); ?>
-                                        </span>
-
-                                    <?php endif; ?>
-
-                                </li>
-
-                            <?php endforeach; ?>
-
-                        </ul>
+                    <div class="product-sku">
+                        ID:
+                        <?php echo esc_html($product->get_sku() ?: '—'); ?>
                     </div>
-                <?php endif; ?>
+
+                    <div class="product__attribute">
+                        <span class="product__attribute-label">Форма</span>
+                        <span class="product__attribute-value">
+                            <?php
+                            $form = $product->get_attribute('pa_form');
+                            echo $form ? esc_html($form) : '—';
+                            ?>
+                        </span>
+                    </div>
+
+                    <div class="product__attribute">
+                        <span class="product__attribute-label">Вес</span>
+                        <span class="product__attribute-value">
+                            <?php
+                            $weight = $product->get_attribute('pa_weight-gr');
+                            echo $weight ? esc_html($weight) : '—';
+                            ?>
+                        </span>
+                    </div>
+
+                    <div class="product__attribute">
+                        <span class="product__attribute-label">Размер</span>
+                        <span class="product__attribute-value">
+                            <?php
+                            $size = $product->get_attribute('pa_size-mm');
+                            echo $size ? esc_html($size) : '—';
+                            ?>
+                        </span>
+                    </div>
+
+                    <div class="product__attribute">
+                        <span class="product__attribute-label">Kurgin Score</span>
+                        <span class="product__attribute-value">
+                            <?php
+                            $kurgin_score = $product->get_attribute('pa_kurgin-score');
+                            echo $kurgin_score ? esc_html($kurgin_score) : '—';
+                            ?>
+                        </span>
+                    </div>
+
+
+
+                </div>
+
+
             </div>
         </div>
     </div>
 
 
-    <?php get_template_part('woocommerce/single-product/product-tabs') ?>
+    <?php //get_template_part('woocommerce/single-product/product-tabs') 
+    ?>
     <?php get_template_part('template-parts/cross-up-sales') ?>
 
-    <?php get_template_part('sections/contacts')
+    <?php //get_template_part('sections/contacts')
     ?>
 </div>

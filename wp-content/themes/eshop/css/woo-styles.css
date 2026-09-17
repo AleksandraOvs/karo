@@ -353,11 +353,32 @@ li.product h2.woocommerce-loop-product__title {
 }
 
 a.button.wc-forward {
-    background: var(--theme-color-accent);
+    background: var(--theme-color-light);
     color: var(--theme-color-primary);
     border-radius: 25px;
-    padding: 1em 2em;
+    padding: .5em 1em;
     transition: all .5s var(--transition);
+    text-align: center;
+}
+
+.woocommerce-message::before {
+    content: "\e015";
+    color: var(--theme-color-light);
+}
+
+.woocommerce div.product div.images {
+    margin-bottom: 0;
+}
+
+button.share-product {
+    padding: 10px 20px;
+    display: flex;
+    gap: 1em;
+    font-weight: 600;
+    color: var(--theme-color-accent);
+    border: 1px solid var(--theme-color-accent);
+    width: 100%;
+    border-radius: 5px;
 }
 
 a.button.wc-forward:hover {
@@ -635,7 +656,7 @@ button.button.filter-toggle:hover {
 .single-product__inner {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .product-inner__images {
@@ -658,7 +679,11 @@ button.button.filter-toggle:hover {
 }
 
 .product-inner__content__col._info-col {
-    max-width: 20%;
+    max-width: 60%;
+}
+
+.product-sku {
+    font-weight: 600;
 }
 
 .product-inner__content__col .product-card__stock {
@@ -680,6 +705,7 @@ button.button.filter-toggle:hover {
     flex-direction: column;
     align-items: center;
     gap: 1em;
+    height: 100%;
 }
 
 .product-inner__content__col._buy-col .product-card__price span {
@@ -830,24 +856,14 @@ h2.woocommerce-loop-product__title {
     content: none;
 }
 
+.product__attribute {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: .5em;
+    border-bottom: 1px dotted var(--theme-color-grey);
+}
+
 @media (max-width: 1400px) {
-    .product-inner__content__col._buy-col {
-        order: 1;
-    }
-
-    .product-inner__content__col._info-col {
-        order: 3;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .product-inner__content__col._benefits-col {
-        order: 2;
-    }
-
-    .single-product__inner__content {
-        flex-wrap: wrap;
-    }
 
     .product-inner__content__col._benefits-col {
         max-width: 60%;

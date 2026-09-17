@@ -5,10 +5,10 @@
     <div class="share-popup__inner">
 
         <h3 class="share-popup__title">
-            Поделиться товаром
+            Поделиться ссылкой на товар
         </h3>
 
-        <div class="share-popup__link">
+        <div class="share-popup__product-link">
 
             <input
                 type="text"
@@ -18,34 +18,46 @@
             <button
                 type="button"
                 class="share-popup__copy">
-                Скопировать
+                <span>Скопировать</span>
             </button>
 
         </div>
 
         <div class="share-popup__social">
+            <?php $svg_tg = '<svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.6646 0.110375L0.934606 6.94737C-0.275394 7.43337 -0.268393 8.10837 0.712607 8.40937L5.26461 9.82937L15.7966 3.18437C16.2946 2.88137 16.7496 3.04437 16.3756 3.37637L7.84261 11.0774H7.84061L7.84261 11.0784L7.52861 15.7704C7.98861 15.7704 8.19161 15.5594 8.44961 15.3104L10.6606 13.1604L15.2596 16.5574C16.1076 17.0244 16.7166 16.7844 16.9276 15.7724L19.9466 1.54437C20.2556 0.305375 19.4736 -0.255625 18.6646 0.110375Z" fill="#0b1220"/>
+</svg>
+';
+
+            $svg_email = '<svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.0006 0.00658374C18.9154 -0.00219458 18.8295 -0.00219458 18.7443 0.00658374H1.24434C1.13218 0.00831195 1.02076 0.0251296 0.913086 0.0565837L9.94434 9.05033L19.0006 0.00658374Z" fill="#0b1220"/>
+<path d="M19.925 0.875305L10.825 9.93781C10.5908 10.1706 10.274 10.3013 9.94375 10.3013C9.61352 10.3013 9.2967 10.1706 9.0625 9.93781L0.04375 0.944055C0.0160246 1.04596 0.00132418 1.15096 0 1.25656V13.7566C0 14.0881 0.131696 14.406 0.366117 14.6404C0.600537 14.8749 0.918479 15.0066 1.25 15.0066H18.75C19.0815 15.0066 19.3995 14.8749 19.6339 14.6404C19.8683 14.406 20 14.0881 20 13.7566V1.25656C19.995 1.12634 19.9697 0.997702 19.925 0.875305ZM2.10625 13.7566H1.2375V12.8628L5.78125 8.35656L6.6625 9.23781L2.10625 13.7566ZM18.7375 13.7566H17.8625L13.3062 9.23781L14.1875 8.35656L18.7312 12.8628L18.7375 13.7566Z" fill="#0b1220"/>
+</svg>
+' ?>
 
             <a
                 href="#"
-                class="share-popup__social-link --telegram"
+                class="share-popup__link --telegram"
                 target="_blank"
                 rel="noopener noreferrer">
-                Telegram
+                <?php echo $svg_tg; ?>
+                <span>Telegram</span>
             </a>
 
             <a
                 href="#"
-                class="share-popup__social-link --email">
-                Электронная почта
+                class="share-popup__link --email">
+                <?php echo $svg_email; ?>
+                <span>Электронная почта</span>
             </a>
-
+            <button
+                type="button"
+                class="share-popup__link share-native">
+                <span>Поделиться</span>
+            </button>
         </div>
 
-        <button
-            type="button"
-            class="share-popup__native">
-            Поделиться
-        </button>
+
 
     </div>
 

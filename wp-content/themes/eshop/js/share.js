@@ -16,6 +16,7 @@ document.addEventListener('click', function (e) {
 
     const input = popup.querySelector('.share-popup__input');
     const copyButton = popup.querySelector('.share-popup__copy');
+    const copyButtonText = copyButton.querySelector('span');
     const telegramLink = popup.querySelector('.--telegram');
     const emailLink = popup.querySelector('.--email');
 
@@ -31,7 +32,9 @@ document.addEventListener('click', function (e) {
         '&body=' +
         encodeURIComponent(productUrl);
 
-    copyButton.textContent = 'Скопировать';
+    // Сбрасываем состояние
+    copyButton.classList.remove('is-copied');
+    copyButtonText.textContent = 'Скопировать';
 
     Fancybox.show([
         {
@@ -41,6 +44,7 @@ document.addEventListener('click', function (e) {
     ]);
 
 });
+
 
 document.addEventListener('click', function (e) {
 
@@ -52,25 +56,48 @@ document.addEventListener('click', function (e) {
 
     const popup = copyButton.closest('.share-popup');
     const input = popup.querySelector('.share-popup__input');
+    const copyButtonText = copyButton.querySelector('span');
+
+    function copied() {
+
+        copyButton.classList.add('is-copied');
+        copyButtonText.textContent = 'Скопировано';
+
+    }
 
     navigator.clipboard.writeText(input.value)
-        .then(() => {
-
-            copyButton.textContent = 'Скопировано';
-
-            setTimeout(() => {
-                copyButton.textContent = 'Скопировать';
-            }, 2000);
-
-        })
+        .then(copied)
         .catch(() => {
 
             input.select();
             document.execCommand('copy');
 
-            copyButton.textContent = 'Скопировано';
+            copied();
 
         });
+
+});
+
+
+document.addEventListener('click', function (e) {
+
+    const button = e.target.closest('.share-popup__native');
+
+    if (!button) {
+        return;
+    }
+
+    const popup = button.closest('.share-popup');
+    const input = popup.querySelector('.share-popup__input');
+
+    if (!navigator.share) {
+        return;
+    }
+
+    navigator.share({
+        title: document.title,
+        url: input.value
+    });
 
 });
 
