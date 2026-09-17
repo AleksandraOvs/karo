@@ -57,7 +57,15 @@
      </button>
 
      <?php custom_add_to_wishlist_button(); ?>
+
      <?php echo do_shortcode('[aura_compare_button]'); ?>
+     <button
+         type="button"
+         class="product-card__info --share"
+         data-product_id="<?php echo esc_attr($product_id); ?>"
+         data-product_url="<?php echo esc_url(get_permalink($product_id)); ?>">
+         <?php echo $svg_share; ?>
+     </button>
      <div class="product-card__cart">
          <?php woocommerce_template_loop_add_to_cart(); ?>
      </div>

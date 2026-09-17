@@ -77,7 +77,7 @@ li.product h2.woocommerce-loop-product__title {
 .product-card__buttons>button,
 .custom-wishlist-btn {
     display: flex;
-    padding: .5em 2em;
+    padding: .5em 1em;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
@@ -87,6 +87,7 @@ li.product h2.woocommerce-loop-product__title {
     cursor: pointer;
     position: relative;
     transition: all .5s var(--transition);
+    flex: 1;
 }
 
 .custom-wishlist-btn.added {

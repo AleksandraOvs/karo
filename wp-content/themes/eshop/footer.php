@@ -98,9 +98,11 @@ $site_description = get_bloginfo('description');
     <?php echo do_shortcode('[contact-form-7 id="4070d6c" title="Бесплатная консультация"]'); ?>
 </div>
 
-<div id="partners-popup" class="popup" style="display:none;max-width:600px;">
-    <?php echo do_shortcode('[contact-form-7 id="afa0f23" title="Стать партнером"]'); ?>
-</div>
+<?php get_template_part('template-parts/share')
+?>
+
+
+
 
 <?php if (!is_cart()) : ?>
     <!--== Start Mini Cart Wrapper ==-->

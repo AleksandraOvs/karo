@@ -1,0 +1,8 @@
+.share-popup__title {
+    margin-top: 0;
+}
+
+.share-popup__link {
+    display: flex;
+    gap: .5em;
+}
