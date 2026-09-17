@@ -98,6 +98,10 @@
     transition: all .5s var(--transition);
 }
 
+.share-popup__link:hover svg path {
+    fill: var(--white);
+}
+
 .share-popup__link.share-native:hover {
     background: transparent;
     color: var(--theme-color-primary);
