@@ -1410,7 +1410,7 @@ h2.woocommerce-loop-product__title {
     }
 
     #product-info-popup {
-        min-height: max-content;
+        min-height: 400px;
     }
 
 
