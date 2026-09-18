@@ -268,6 +268,10 @@ li.product h2.woocommerce-loop-product__title {
     transition: all .5s var(--transition);
 }
 
+.button.product_type_simple.add_to_cart_button.added span {
+    display: none;
+}
+
 .woocommerce ul.products li.product .button:hover {
     background: linear-gradient(90deg, rgba(12, 49, 32, 1) 0%, rgba(12, 49, 32, 1) 100%);
 }
