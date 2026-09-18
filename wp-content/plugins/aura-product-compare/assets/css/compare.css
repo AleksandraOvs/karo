@@ -260,6 +260,11 @@
     display: none;
 }
 
+.header .fixed-container .main-menu li .aura-compare-count {
+    top: -10px;
+    right: -10px;
+}
+
 @media(max-width: 1400px) {
 
     .aura-compare__products.swiper,
