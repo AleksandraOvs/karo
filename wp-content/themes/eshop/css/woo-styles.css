@@ -503,7 +503,7 @@ a.button.wc-forward:hover {
 
 /* PRODUCTS */
 .woocommerce .products .product,
-.woocommerce-page .products .product {
+.products .product {
     float: unset;
     margin: 0;
     margin-left: 0px;
@@ -1245,7 +1245,7 @@ h2.woocommerce-loop-product__title {
         display: none;
     }
 
-    .woocommerce:where(body:not(.woocommerce-uses-block-theme)) .products li.product .price {
+    .woocommerce:where(body:not(.woocommerce-uses-block-theme)) .products .product .price {
         font-size: 16px;
     }
 
