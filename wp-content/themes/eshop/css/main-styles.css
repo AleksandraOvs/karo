@@ -1699,8 +1699,23 @@ footer.footer * .menu {
         opacity: 1;
         transform: none;
         z-index: 100;
-
     }
+
+    .header .fixed-container .main-menu li .aura-compare-count {
+        position: relative;
+        top: unset;
+        right: unset;
+    }
+
+    #menu-main li {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .5em;
+    }
+
 }
 
 @media (max-width: 992px) {
