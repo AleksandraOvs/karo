@@ -95,14 +95,12 @@ $site_description = get_bloginfo('description');
 <?php endif; ?>
 
 <div id="consultation-popup" class="popup" style="display:none;">
-    <?php echo do_shortcode('[contact-form-7 id="4070d6c" title="Бесплатная консультация"]'); ?>
+
+    <?php echo do_shortcode('[contact-form-7 id="71ed246" title="Контактная форма 1"]'); ?>
 </div>
 
 <?php get_template_part('template-parts/share')
 ?>
-
-
-
 
 <?php if (!is_cart()) : ?>
     <!--== Start Mini Cart Wrapper ==-->
@@ -122,6 +120,8 @@ $site_description = get_bloginfo('description');
 <?php endif; ?>
 
 <?php get_template_part('template-parts/popups') ?>
+
+
 
 <?php wp_footer(); ?>
 </body>

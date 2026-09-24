@@ -100,7 +100,7 @@ if (is_shop()) {
 
     echo '<div class="shop-header__item  shop-header__individual">';
 
-    echo '<button type="button" class="button shop-header__individual-button" data-popup="individual-selection">';
+    echo '<button type="button" class="button shop-header__individual-button" data-popup="consultation-popup">';
     echo 'Индивидуальный подбор';
     echo '</button>';
     echo '<span class="shop-header__individual-hint">';
