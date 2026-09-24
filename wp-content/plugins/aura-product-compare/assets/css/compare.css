@@ -149,6 +149,10 @@
     padding: 1em 0;
 }
 
+.product-card.aura-compare-product .product-card__bottom a {
+    margin: 0 auto;
+}
+
 
 /*
  * Кнопка удаления
