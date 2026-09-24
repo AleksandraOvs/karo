@@ -19,7 +19,7 @@ $compare_img = '<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmln
 ';
 ?>
 
-<li <?php wc_product_class('', $product); ?>>
+<div <?php wc_product_class('', $product); ?>>
 
     <?php
     do_action('woocommerce_before_shop_loop_item');
@@ -61,4 +61,4 @@ $compare_img = '<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmln
 
     </div>
 
-</li>
+</div>

@@ -251,7 +251,23 @@ function custom_wishlist_shortcode()
 
     ob_start();
 ?>
+    <ul class="products-nav">
+        <li>Форма</li>
+        <li>Вес (гр.)</li>
+        <li>Размер (мм.)</li>
+        <li>Kurgin Score</li>
+        <li>Цена</li>
+    </ul>
 
+    <?php
+    // Получаем количество колонок (2,3,4,5 и т.д.)
+    $columns = wc_get_loop_prop('columns');
+
+    // Фолбек (если вдруг не задано)
+    if (!$columns) {
+        $columns = 4;
+    }
+    ?>
     <div class="cart-flex woocommerce-cart-form__contents">
 
         <?php foreach ($clean_wishlist as $product_id) :
@@ -262,148 +278,11 @@ function custom_wishlist_shortcode()
                 continue;
             }
 
-            $sku = $product->get_sku() ?: '—';
-            $price = (float) $product->get_price();
-            $price_html = wc_price($price);
+            $GLOBALS['product'] = $product;
 
-            $in_cart = false;
+            wc_get_template('content-product.php');
 
-            if (function_exists('WC') && WC()->cart) {
-                foreach (WC()->cart->get_cart() as $cart_item) {
-                    if ((int) $cart_item['product_id'] === (int) $product_id) {
-                        $in_cart = true;
-                        break;
-                    }
-                }
-            }
-        ?>
-
-            <div class="cart-flex__row wishlist-item">
-
-
-
-
-                <!-- <a href="<?php //echo esc_url(get_permalink($product_id)); 
-                                ?>" class="product-thumb">
-                            <?php //echo $product->get_image(); 
-                            ?>
-                        </a> -->
-
-                <div class="cart-product-item__summary">
-
-                    <a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="product-name">
-                        <?php echo esc_html($product->get_name()); ?>
-                    </a>
-
-                    <div class="sku">
-                        ID: <?php echo esc_html($sku); ?>
-                    </div>
-
-                </div>
-
-                <ul class="wl-product-inner">
-
-                    <?php foreach ($product->get_attributes() as $attribute) : ?>
-
-                        <?php
-                        if (!$attribute->get_visible()) {
-                            continue;
-                        }
-
-                        $name = $attribute->get_name();
-                        $label = wc_attribute_label($name);
-
-                        if ($attribute->is_taxonomy()) {
-                            $values = wc_get_product_terms(
-                                $product_id,
-                                $name,
-                                [
-                                    'fields' => 'names',
-                                ]
-                            );
-
-                            $value = implode(', ', $values);
-                        } else {
-                            $value = implode(', ', $attribute->get_options());
-                        }
-
-                        if (!$value) {
-                            continue;
-                        }
-                        ?>
-
-                        <li class="wl-product-inner__item __attribute">
-
-                            <span class="product-attributes__name">
-                                <?php echo esc_html($label); ?>:
-                            </span>
-
-                            <p class="product-attributes__value">
-                                <?php echo esc_html($value); ?>
-                            </p>
-
-                        </li>
-
-                    <?php endforeach; ?>
-                    <li class="wl-product-inner__item __price">
-                        <span>
-                            Цена:
-                        </span>
-
-                        <p
-                            class="price"
-                            data-raw-price="<?php echo esc_attr($price); ?>">
-                            <?php echo $price_html; ?>
-                        </p>
-                    </li>
-
-                </ul>
-
-                <div class="wishlist-cart-actions">
-
-                    <button id="product-info-popup" class="button">Открыть карточку</button>
-
-
-                    <button
-                        class="custom-wishlist-btn added"
-                        data-product_id="<?php echo esc_attr($product_id); ?>"
-                        aria-label="Удалить из избранного">
-
-                        Удалить
-
-                    </button>
-
-                    <?php if ($in_cart) : ?>
-
-                        <a
-                            href="<?php echo esc_url(wc_get_cart_url()); ?>"
-                            class="button wishlist-in-cart">
-                            В корзине
-                        </a>
-
-                    <?php else : ?>
-
-                        <a
-                            href="<?php echo esc_url($product->add_to_cart_url()); ?>"
-                            class="button add_to_cart_button ajax_add_to_cart wishlist-add-to-cart"
-                            data-product_id="<?php echo esc_attr($product_id); ?>"
-                            data-quantity="1"
-                            rel="nofollow">
-                            В корзину
-                        </a>
-
-                    <?php endif; ?>
-
-                </div>
-
-
-
-            </div>
-
-
-
-
-        <?php endforeach; ?>
+        endforeach; ?>
 
     </div>
 
