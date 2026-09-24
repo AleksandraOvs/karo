@@ -127,6 +127,12 @@
     text-decoration: none;
 }
 
+.product-card__title a {
+    font-size: 24px;
+    text-align: center;
+    display: block;
+    font-family: var(--font-heading);
+}
 
 /*
  * Цена
@@ -154,8 +160,9 @@
     background: var(--theme-color-grey);
     cursor: pointer;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    opacity: .5;
+    top: .5em;
+    right: .5em;
     z-index: 5;
     transition: all .5s var(--transition);
     border-radius: 5px;
@@ -183,7 +190,7 @@
     margin-left: 0px;
     margin-left: 0px;
     margin-left: 0px;
-    padding: 1em;
+    padding: 2em 1em 1em 1em;
     position: relative;
     width: 100%;
     margin-left: 0;
