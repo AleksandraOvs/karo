@@ -96,7 +96,7 @@ $site_description = get_bloginfo('description');
 
 <div id="consultation-popup" class="popup" style="display:none;">
 
-    <?php echo do_shortcode('[contact-form-7 id="71ed246" title="Контактная форма 1"]'); ?>
+    <?php echo do_shortcode('[contact-form-7 id="0929143" title="Контактная форма 1"]'); ?>
 </div>
 
 <?php get_template_part('template-parts/share')
