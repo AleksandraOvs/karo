@@ -30,14 +30,14 @@ class AURA_Product_Compare
      * Атрибуты, участвующие в сравнении.
      * Порядок здесь = порядок вывода.
      */
-    const COMPARE_ATTRIBUTES = [
-        'pa_proizoditel',
-        'pa_collection',
-        'pa_obem-korobki-m3',
-        'pa_forma',
-        'pa_dlina-mm',
-        'pa_vysota-mm',
-    ];
+    // const COMPARE_ATTRIBUTES = [
+    //     'pa_proizoditel',
+    //     'pa_collection',
+    //     'pa_obem-korobki-m3',
+    //     'pa_forma',
+    //     'pa_dlina-mm',
+    //     'pa_vysota-mm',
+    // ];
 
     private function ensure_session()
     {
@@ -599,12 +599,12 @@ class AURA_Product_Compare
      * Затем идут выбранные атрибуты
      * строго в порядке COMPARE_ATTRIBUTES.
      */
-        foreach (self::COMPARE_ATTRIBUTES as $attribute_key) {
+        /*
+ * Затем выводим все найденные атрибуты.
+ */
+        foreach ($all_attributes as $attribute) {
 
-            if (isset($all_attributes[$attribute_key])) {
-
-                $result[] = $all_attributes[$attribute_key];
-            }
+            $result[] = $attribute;
         }
 
 
