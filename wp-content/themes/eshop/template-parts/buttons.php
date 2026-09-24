@@ -68,7 +68,6 @@
 
      <?php custom_add_to_wishlist_button(); ?>
 
-     <?php echo do_shortcode('[aura_compare_button]'); ?>
      <button
          type="button"
          class="product-card__info --share"
