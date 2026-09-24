@@ -268,7 +268,7 @@ function custom_wishlist_shortcode()
         $columns = 4;
     }
     ?>
-    <div class="cart-flex woocommerce-cart-form__contents">
+    <div class="cart-flex woocommerce-cart-form__contents products">
 
         <?php foreach ($clean_wishlist as $product_id) :
 
