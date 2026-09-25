@@ -32,6 +32,7 @@ document.querySelectorAll('.links-slider').forEach((slider) => {
 
             768: {
                 slidesPerView: 2,
+                autoplay: false;
             },
 
             1024: {
