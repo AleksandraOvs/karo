@@ -52,6 +52,56 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
+            if (popupId === "buy-one-click-popup") {
+
+                const productName = this.dataset.productName || "";
+                const productSku = this.dataset.productSku || "—";
+                const productPrice = this.dataset.productPrice || "";
+                const productUrl = this.dataset.productUrl || "";
+                const productId = this.dataset.productId || "";
+
+                const nameElement = target.querySelector(".buy-one-click__product-name");
+                const skuElement = target.querySelector(".buy-one-click__product-sku");
+                const priceElement = target.querySelector(".buy-one-click__product-price");
+
+                if (nameElement) {
+                    nameElement.textContent = productName;
+                }
+
+                if (skuElement) {
+                    skuElement.textContent = `Артикул: ${productSku}`;
+                }
+
+                if (priceElement) {
+                    priceElement.textContent = productPrice;
+                }
+
+                const productIdField = target.querySelector('[name="product-id"]');
+                const productNameField = target.querySelector('[name="product-name"]');
+                const productSkuField = target.querySelector('[name="product-sku"]');
+                const productPriceField = target.querySelector('[name="product-price"]');
+                const productUrlField = target.querySelector('[name="product-url"]');
+
+                if (productIdField) {
+                    productIdField.value = productId;
+                }
+
+                if (productNameField) {
+                    productNameField.value = productName;
+                }
+
+                if (productSkuField) {
+                    productSkuField.value = productSku;
+                }
+
+                if (productPriceField) {
+                    productPriceField.value = productPrice;
+                }
+
+                if (productUrlField) {
+                    productUrlField.value = productUrl;
+                }
+            }
 
             Fancybox.show([
                 {

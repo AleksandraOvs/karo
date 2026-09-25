@@ -102,6 +102,14 @@ $site_description = get_bloginfo('description');
     <?php echo do_shortcode('[contact-form-7 id="da5b7d9" title="Форма Узнать о товаре"]'); ?>
 </div>
 
+<div id="buy-one-click-popup" class="popup" style="display:none;">
+    <?php
+    echo do_shortcode(
+        '[contact-form-7 id="21b63e8" title="Форма Купить в 1 клик"]'
+    );
+    ?>
+</div>
+
 <?php get_template_part('template-parts/share')
 ?>
 

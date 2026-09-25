@@ -27,44 +27,15 @@ if (post_password_required()) {
         <div class="single-product__inner">
 
             <!-- 1. Галерея -->
-            <div class="product-inner__images">
-                <?php do_action('woocommerce_before_single_product_summary'); ?>
-            </div>
+            <!-- <div class="product-inner__images">
+                <?php //do_action('woocommerce_before_single_product_summary'); 
+                ?>
+            </div> -->
             <div class="single-product__inner__content">
                 <div class="product-inner__content__col _buy-col">
 
                     <div class="product-card__price">
                         <?php echo $product->get_price_html(); ?>
-                    </div>
-
-
-                    <div class="product-quantity">
-
-                        <button
-                            type="button"
-                            class="quantity-minus"
-                            aria-label="Уменьшить количество">
-                            −
-                        </button>
-
-                        <?php
-                        woocommerce_quantity_input(
-                            [
-                                'min_value'   => $product->get_min_purchase_quantity(),
-                                'max_value'   => $product->get_max_purchase_quantity(),
-                                'input_value' => $product->get_min_purchase_quantity(),
-                            ],
-                            $product
-                        );
-                        ?>
-
-                        <button
-                            type="button"
-                            class="quantity-plus"
-                            aria-label="Увеличить количество">
-                            +
-                        </button>
-
                     </div>
 
 
@@ -91,6 +62,18 @@ if (post_password_required()) {
                             </button>
 
                         </form>
+
+                        <button
+                            type="button"
+                            class="button buy-one-click"
+                            data-popup="buy-one-click-popup"
+                            data-product-id="<?php echo esc_attr($product->get_id()); ?>"
+                            data-product-name="<?php echo esc_attr($product->get_name()); ?>"
+                            data-product-sku="<?php echo esc_attr($product->get_sku() ?: '—'); ?>"
+                            data-product-price="<?php echo esc_attr(wp_strip_all_tags($product->get_price_html())); ?>"
+                            data-product-url="<?php echo esc_url($product->get_permalink()); ?>">
+                            Купить в один клик
+                        </button>
 
                     <?php endif; ?>
 
