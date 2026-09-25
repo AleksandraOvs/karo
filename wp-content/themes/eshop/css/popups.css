@@ -91,3 +91,24 @@
     text-align: center;
     margin: 0 auto .5em;
 }
+
+.buy-one-click__product {
+    display: flex;
+    gap: 1em;
+    align-items: stretch;
+}
+
+.buy-one-click__product>div {
+    flex: 1;
+    padding: .5em;
+    border: 1px solid var(--theme-color-grey);
+    border-radius: 10px;
+    color: var(--theme-color-black);
+}
+
+.buy-one-click__product {
+    display: flex;
+    gap: 1em;
+    align-items: stretch;
+    margin-bottom: 1em;
+}

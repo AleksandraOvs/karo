@@ -107,6 +107,10 @@ $site_description = get_bloginfo('description');
     echo do_shortcode(
         '[contact-form-7 id="21b63e8" title="Форма Купить в 1 клик"]'
     );
+    // echo do_shortcode(
+    //     ' [contact-form-7 id="f07f994" title="Купить в 1 клик"]'
+    // );
+
     ?>
 </div>
 
