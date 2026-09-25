@@ -1715,7 +1715,6 @@ footer.footer * .menu {
         justify-content: flex-start;
         gap: .5em;
     }
-
 }
 
 @media (max-width: 992px) {

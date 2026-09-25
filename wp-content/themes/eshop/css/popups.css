@@ -1,4 +1,5 @@
-.popup {
+.popup,
+#popup-about-product {
     max-width: 100%;
     width: 640px;
     background: var(--white);
@@ -82,4 +83,11 @@
 .popup .wpcf7 form p .button {
     background: var(--theme-color-primary);
     margin: 0 auto;
+}
+
+.product-question-title {
+    font-family: var(--font-body);
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto .5em;
 }

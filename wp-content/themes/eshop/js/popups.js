@@ -27,6 +27,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+
+            // Данные товара для попапа "О товаре"
+            if (popupId === "popup-about-product") {
+
+                const productName = this.dataset.productName || "";
+                const productSku = this.dataset.productSku || "—";
+
+                const title = target.querySelector(".product-question-title");
+                const nameField = target.querySelector('[name="product-name"]');
+                const skuField = target.querySelector('[name="product-sku"]');
+
+                if (title) {
+                    title.textContent =
+                        `Задайте свой вопрос о товаре  ${productName} (${productSku})`;
+                }
+
+                if (nameField) {
+                    nameField.value = productName;
+                }
+
+                if (skuField) {
+                    skuField.value = productSku;
+                }
+            }
+
+
             Fancybox.show([
                 {
                     src: targetSelector,

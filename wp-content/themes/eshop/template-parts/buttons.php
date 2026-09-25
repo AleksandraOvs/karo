@@ -37,12 +37,17 @@
 
  <div class="product-card__buttons">
 
+     <?php
+        $product = wc_get_product($product_id);
+        ?>
+
      <button
+         type="button"
          class="popup-about-product"
-         data-product_id="<?php echo esc_attr($product_id); ?>">
-
-         <?php echo $svg_chat ?>
-
+         data-popup="popup-about-product"
+         data-product-name="<?php echo esc_attr($product->get_name()); ?>"
+         data-product-sku="<?php echo esc_attr($product->get_sku() ?: '—'); ?>">
+         <?php echo $svg_chat; ?>
      </button>
 
      <button
