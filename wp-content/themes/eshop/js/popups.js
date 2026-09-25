@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (title) {
                     title.textContent =
-                        `Задайте свой вопрос о товаре  ${productName} (${productSku})`;
+                        `Задайте свой вопрос о товаре  ${productName} (ID: ${productSku})`;
                 }
 
                 if (nameField) {
