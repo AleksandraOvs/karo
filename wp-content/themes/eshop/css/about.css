@@ -210,6 +210,10 @@ section.faq-section {
     .faq-section .fixed-container {
         padding-inline: 1em;
     }
+
+    .links-slider-section .container {
+        padding-inline: 1em;
+    }
 }
 
 @media (max-width: 576px) {

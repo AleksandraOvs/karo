@@ -1,5 +1,7 @@
 document.querySelectorAll('.links-slider').forEach((slider) => {
 
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
     new Swiper(slider, {
 
         slidesPerView: 3,
@@ -9,11 +11,13 @@ document.querySelectorAll('.links-slider').forEach((slider) => {
 
         speed: 30000,
 
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-        },
+        autoplay: isMobile
+            ? false
+            : {
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
 
         freeMode: {
             enabled: true,
@@ -32,7 +36,6 @@ document.querySelectorAll('.links-slider').forEach((slider) => {
 
             768: {
                 slidesPerView: 2,
-                autoplay: false;
             },
 
             1024: {
