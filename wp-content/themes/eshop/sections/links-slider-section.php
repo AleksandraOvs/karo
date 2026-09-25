@@ -3,7 +3,7 @@ if (!empty($slides)) :
 ?>
 
     <section class="links-slider-section">
-        <div class="fixed-container">
+        <div class="container">
             <div class="links-slider swiper">
 
                 <div class="links-slider__wrapper swiper-wrapper">
