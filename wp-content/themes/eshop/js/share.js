@@ -14,23 +14,59 @@ document.addEventListener('click', function (e) {
 
     const popup = document.querySelector('#share-popup');
 
+    if (!popup) {
+        return;
+    }
+
     const input = popup.querySelector('.share-popup__input');
     const copyButton = popup.querySelector('.share-popup__copy');
     const copyButtonText = copyButton.querySelector('span');
+
     const telegramLink = popup.querySelector('.--telegram');
     const emailLink = popup.querySelector('.--email');
+    const maxLink = popup.querySelector('.--max');
+    const whatsappLink = popup.querySelector('.--whatsapp');
 
     input.value = productUrl;
 
-    telegramLink.href =
-        'https://t.me/share/url?url=' +
-        encodeURIComponent(productUrl);
+    /*
+     * Telegram
+     */
+    if (telegramLink) {
+        telegramLink.href =
+            'https://t.me/share/url?url=' +
+            encodeURIComponent(productUrl);
+    }
 
-    emailLink.href =
-        'mailto:?subject=' +
-        encodeURIComponent('Посмотрите этот товар') +
-        '&body=' +
-        encodeURIComponent(productUrl);
+    /*
+     * E-mail
+     */
+    if (emailLink) {
+        emailLink.href =
+            'mailto:?subject=' +
+            encodeURIComponent('Посмотрите этот товар') +
+            '&body=' +
+            encodeURIComponent(productUrl);
+    }
+
+    /*
+     * MAX
+     */
+    if (maxLink) {
+        maxLink.href =
+            'https://max.ru/share?' +
+            'text=' +
+            encodeURIComponent(productUrl);
+    }
+
+    /*
+     * WhatsApp
+     */
+    if (whatsappLink) {
+        whatsappLink.href =
+            'https://wa.me/?text=' +
+            encodeURIComponent(productUrl);
+    }
 
     // Сбрасываем состояние
     copyButton.classList.remove('is-copied');
@@ -42,74 +78,5 @@ document.addEventListener('click', function (e) {
             type: 'inline'
         }
     ]);
-
-});
-
-
-document.addEventListener('click', function (e) {
-
-    const copyButton = e.target.closest('.share-popup__copy');
-
-    if (!copyButton) {
-        return;
-    }
-
-    const popup = copyButton.closest('.share-popup');
-    const input = popup.querySelector('.share-popup__input');
-    const copyButtonText = copyButton.querySelector('span');
-
-    function copied() {
-
-        copyButton.classList.add('is-copied');
-        copyButtonText.textContent = 'Скопировано';
-
-    }
-
-    function copyFallback() {
-
-        input.focus();
-        input.select();
-        input.setSelectionRange(0, input.value.length);
-
-        try {
-            const success = document.execCommand('copy');
-
-            if (success) {
-                copied();
-            }
-        } catch (error) {
-            console.error('Не удалось скопировать ссылку:', error);
-        }
-
-    }
-
-    // Современный Clipboard API
-    if (navigator.clipboard && window.isSecureContext) {
-
-        navigator.clipboard.writeText(input.value)
-            .then(copied)
-            .catch(copyFallback);
-
-    } else {
-
-        // HTTP / старые браузеры
-        copyFallback();
-
-    }
-
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    const nativeShareButtons = document.querySelectorAll(
-        '.share-popup__native'
-    );
-
-    if (!navigator.share) {
-        nativeShareButtons.forEach(function (button) {
-            button.remove();
-        });
-    }
 
 });

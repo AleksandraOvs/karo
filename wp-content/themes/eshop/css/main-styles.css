@@ -162,7 +162,8 @@ button {
 .button,
 .button.single_add_to_cart_button,
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button,
-a.button.product_type_simple {
+a.button.product_type_simple,
+.button.buy-one-click {
     padding: 10px 30px;
     font-weight: 400;
     border-radius: 3px;
@@ -213,6 +214,19 @@ a.button.product_type_simple {
     border: 1px solid var(--theme-color-light);
 }
 
+button.button.buy-one-click {
+    background: var(--theme-color-primary);
+    border: 1px solid var(--theme-color-primary);
+    color: var(--white);
+    width: 280px;
+    height: 40px;
+}
+
+button.button.buy-one-click:hover {
+    background: transparent;
+    color: var(--theme-color-primary);
+
+}
 
 @media (hover: hover) {
     a:hover {
