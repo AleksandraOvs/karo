@@ -99,7 +99,7 @@ $site_description = get_bloginfo('description');
 </div>
 
 <div id="popup-about-product">
-    <?php echo do_shortcode('[contact-form-7 id="da442db" title="Форма Узнать о товаре"]'); ?>
+    <?php echo do_shortcode('[contact-form-7 id="da5b7d9" title="Форма Узнать о товаре"]'); ?>
 </div>
 
 <?php get_template_part('template-parts/share')
