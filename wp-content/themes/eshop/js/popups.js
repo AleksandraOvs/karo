@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Открытие попапов по data-popup
     document.querySelectorAll("[data-popup]").forEach(button => {
 
         button.addEventListener("click", function (e) {
@@ -14,12 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const targetSelector = `#${popupId}`;
-
-            if (typeof Fancybox === "undefined") {
-                console.error("Fancybox не загружен");
-                return;
-            }
-
             const target = document.querySelector(targetSelector);
 
             if (!target) {
@@ -27,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
-            // Данные товара для попапа "О товаре"
+            /*
+             * Попап "О товаре"
+             */
             if (popupId === "popup-about-product") {
 
                 const productName = this.dataset.productName || "";
@@ -40,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (title) {
                     title.textContent =
-                        `Задайте свой вопрос о товаре  ${productName} (ID: ${productSku})`;
+                        `Задайте свой вопрос о товаре ${productName} (ID: ${productSku})`;
                 }
 
                 if (nameField) {
@@ -52,6 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
+
+            /*
+             * Попап "Купить в один клик"
+             */
             if (popupId === "buy-one-click-popup") {
 
                 const productName = this.dataset.productName || "";
@@ -60,9 +58,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 const productUrl = this.dataset.productUrl || "";
                 const productId = this.dataset.productId || "";
 
-                const nameElement = target.querySelector(".buy-one-click__product-name");
-                const skuElement = target.querySelector(".buy-one-click__product-sku");
-                const priceElement = target.querySelector(".buy-one-click__product-price");
+                console.log("Купить в 1 клик:", {
+                    productName,
+                    productSku,
+                    productPrice,
+                    productUrl,
+                    productId
+                });
+
+                /*
+                 * Визуальная информация о товаре
+                 */
+                const nameElement = target.querySelector(
+                    ".buy-one-click__product-name"
+                );
+
+                const skuElement = target.querySelector(
+                    ".buy-one-click__product-sku"
+                );
+
+                const priceElement = target.querySelector(
+                    ".buy-one-click__product-price"
+                );
 
                 if (nameElement) {
                     nameElement.textContent = productName;
@@ -76,31 +93,47 @@ document.addEventListener("DOMContentLoaded", function () {
                     priceElement.textContent = productPrice;
                 }
 
-                const productIdField = target.querySelector('[name="product-id"]');
-                const productNameField = target.querySelector('[name="product-name"]');
-                const productSkuField = target.querySelector('[name="product-sku"]');
-                const productPriceField = target.querySelector('[name="product-price"]');
-                const productUrlField = target.querySelector('[name="product-url"]');
 
-                if (productIdField) {
-                    productIdField.value = productId;
-                }
+                /*
+                 * Поля CF7
+                 */
+                const form = target.querySelector("form.wpcf7-form");
 
-                if (productNameField) {
-                    productNameField.value = productName;
-                }
+                if (!form) {
+                    console.error("CF7 форма не найдена внутри попапа");
+                } else {
 
-                if (productSkuField) {
-                    productSkuField.value = productSku;
-                }
+                    const setField = (name, value) => {
 
-                if (productPriceField) {
-                    productPriceField.value = productPrice;
-                }
+                        const field = form.querySelector(
+                            `[name="${name}"]`
+                        );
 
-                if (productUrlField) {
-                    productUrlField.value = productUrl;
+                        if (!field) {
+                            console.error(`Поле CF7 не найдено: ${name}`);
+                            return;
+                        }
+
+                        field.value = value;
+                    };
+
+                    setField("product-name", productName);
+                    setField("product-sku", productSku);
+                    setField("product-id", productId);
+                    setField("product-url", productUrl);
+                    setField("product-price", productPrice);
+
+                    console.log("CF7 поля заполнены");
                 }
+            }
+
+
+            /*
+             * Открываем Fancybox
+             */
+            if (typeof Fancybox === "undefined") {
+                console.error("Fancybox не загружен");
+                return;
             }
 
             Fancybox.show([
@@ -109,11 +142,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     type: "inline"
                 }
             ]);
+
         });
+
     });
 
 
-    // CF7 после успешной отправки
+    /*
+     * CF7 после успешной отправки
+     */
     document.addEventListener("wpcf7mailsent", function (event) {
 
         const mainForm = document.querySelector("#main-form");
