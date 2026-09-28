@@ -98,7 +98,7 @@ $site_description = get_bloginfo('description');
     <?php echo do_shortcode('[contact-form-7 id="0929143" title="Контактная форма 1"]'); ?>
 </div>
 
-<div id="popup-about-product">
+<div id="popup-about-product" class="popup" style="display:none;">
     <?php echo do_shortcode('[contact-form-7 id="da5b7d9" title="Форма Узнать о товаре"]'); ?>
 </div>
 
