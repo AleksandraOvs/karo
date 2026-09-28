@@ -1435,14 +1435,14 @@ h2.woocommerce-loop-product__title {
         margin-top: 3vh;
     }
 
-    .product-card__buttons .product-card__cart {
+    /* .product-card__buttons .product-card__cart {
         width: 100%;
         flex: unset;
     }
 
     .product-card__buttons .product-card__cart a.button {
         max-width: 100%;
-    }
+    } */
 
     .contacts__messenger {
         width: 100%;
