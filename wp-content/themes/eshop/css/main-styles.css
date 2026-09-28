@@ -2087,7 +2087,7 @@ footer.footer * .menu {
         width: 100%;
         box-sizing: border-box;
         background: #fff;
-        z-index: 500;
+        z-index: 510;
         filter: drop-shadow(0 -2px 2px rgba(0, 0, 0, .1));
     }
 
