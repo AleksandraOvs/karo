@@ -1434,7 +1434,11 @@ h2.woocommerce-loop-product__title {
 @media (max-width: 480px) {
     .product-card__buttons {
         flex-wrap: wrap;
-        margin-top: 1em;
+        margin-top: .5em;
+    }
+
+    .product-card__sku {
+        font-size: 12px;
     }
 
     /* .product-card__buttons .product-card__cart {
