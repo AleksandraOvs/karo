@@ -517,13 +517,17 @@ a.button.wc-forward:hover {
 }
 
 .products-nav {
+    position: sticky;
+    top: 90.8px;
+    z-index: 10;
+    background: #fff;
     list-style: none;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: .5em;
     text-align: center;
-    margin-top: 2em;
-    padding-inline: 1em;
+    margin-top: 0;
+    padding: 1em;
 }
 
 .products-nav li {
@@ -1005,6 +1009,11 @@ h2.woocommerce-loop-product__title {
         max-width: 40%;
         width: 40%;
     }
+
+    .products-nav {
+        position: sticky;
+        top: 70.8px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1437,6 +1446,11 @@ h2.woocommerce-loop-product__title {
 
     .contacts__messenger {
         width: 100%;
+    }
+
+    .products-nav {
+        top: 50.8px;
+        font-size: 12px;
     }
 }
 
