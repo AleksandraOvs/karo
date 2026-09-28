@@ -1340,12 +1340,14 @@ h2.woocommerce-loop-product__title {
 
     .filters-head {
         position: fixed;
-        bottom: 54.4px;
+        bottom: 40px;
         z-index: 500;
         left: 0;
         width: 100%;
         background: #fff;
         padding: .5em;
+        padding-bottom: 0.5em;
+        padding-bottom: 1.5em;
     }
 
 
