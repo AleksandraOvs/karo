@@ -544,7 +544,7 @@ header .fixed-container {
     display: flex;
     min-height: 85vh;
     overflow: hidden;
-    padding-top: calc(3vh + 91px);
+    padding-top: 0;
     padding-bottom: 0;
     position: relative;
     flex-direction: column;
