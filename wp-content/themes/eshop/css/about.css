@@ -35,11 +35,8 @@ h1.hero__title:before {
 
 .hero__title span {
     display: block;
-    font-size: clamp(54px, 4vw, 80px);
-    position: absolute;
-    right: 0;
-    bottom: -5vw;
     color: var(--white);
+    line-height: 1;
 }
 
 .hero__inner .fixed-container {
