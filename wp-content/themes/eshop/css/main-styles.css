@@ -76,6 +76,21 @@ body {
     overflow-x: hidden;
 }
 
+body.fixed {
+    overflow: hidden;
+}
+
+body.fixed:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 21;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .7);
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -349,7 +364,7 @@ svg {
 
 section.page-title-block {
     padding-bottom: 3vh;
-    padding-top: 120px;
+    padding-top: 90px;
 }
 
 .page-title__description p {
@@ -1738,6 +1753,11 @@ footer.footer * .menu {
         padding-right: 1em;
     }
 
+    section.page-title-block {
+        padding-bottom: 3vh;
+        padding-top: 70px;
+    }
+
     .contacts__inner__left {
         flex-direction: column;
         gap: 2em;
@@ -2141,6 +2161,11 @@ footer.footer * .menu {
     .fixed-container,
     .container {
         padding-inline: .5em;
+    }
+
+    section.page-title-block {
+        padding-bottom: 3vh;
+        padding-top: 40px;
     }
 
     .header__bottom-logo {

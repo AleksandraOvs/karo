@@ -5,80 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!filtersHead || !filtersWrapper) return;
 
+    const body = document.body;
+    const filterActions = document.getElementById('cwc-filter-actions');
+
+    // Открытие / закрытие фильтра
     filtersHead.addEventListener('click', function () {
         filtersWrapper.classList.toggle('opened');
+
+        // fixed для body только когда фильтр открыт
+        body.classList.toggle('fixed', filtersWrapper.classList.contains('opened'));
     });
 
-
-    // // document.addEventListener('click', function (e) {
-
-    // //     const title = e.target.closest('.filters-head');
-    // //     if (!title) return;
-
-    // //     const filter = title.closest('.filters-wrapper');
-    // //     if (!filter) return;
-
-    // //     const content = filter.querySelector('.filter-item__content');
-
-    // //     title.classList.toggle('active');
-    // //     content.classList.toggle('opened');
-    // // });
-
-
-    // /* ===============================
-    //    КНОПКА ОТКРЫТИЯ ФИЛЬТРА НА <992PX
-    // =============================== */
-
-    // const button = document.querySelector('button.toggle-filter');
-    // const sidebar = document.querySelector('.sidebar-area-wrapper._filters');
-    // const closeBtn = document.querySelector('.close-filters');
-    // const applyBtn = document.querySelector('#cwc-apply-filters');
-
-    // if (!button || !sidebar) return;
-
-    // // Открытие / переключение
-    // button.addEventListener('click', () => {
-    //     //  if (window.innerWidth <= 992) {
-    //     sidebar.classList.toggle('show');
-    //     //  }
-    // });
-
-    // // Закрытие по кнопке
-    // if (closeBtn) {
-    //     closeBtn.addEventListener('click', () => {
-    //         sidebar.classList.remove('show');
-    //     });
-    // }
-
-    // // Закрытие по клику вне сайдбара
-    // document.addEventListener('click', (e) => {
-    //     if (
-    //         window.innerWidth <= 992 &&
-    //         sidebar.classList.contains('show') &&
-    //         !sidebar.contains(e.target) &&
-    //         !button.contains(e.target)
-    //     ) {
-    //         sidebar.classList.remove('show');
-    //     }
-    // });
-
-    // // Закрытие по Esc
-    // document.addEventListener('keydown', (e) => {
-    //     if (e.key === 'Escape') {
-    //         sidebar.classList.remove('show');
-    //     }
-    // });
-
-    // // Закрытие после применения фильтров на <576px
-    // if (applyBtn) {
-    //     applyBtn.addEventListener('click', () => {
-    //         if (window.innerWidth < 576) {
-    //             sidebar.classList.remove('show');
-    //         }
-    //     });
-    // };
-
-
+    // На мобильных (<576px) кнопка "Применить" закрывает фильтр
+    if (filterActions) {
+        filterActions.addEventListener('click', function () {
+            if (window.innerWidth < 576) {
+                filtersWrapper.classList.remove('opened');
+                body.classList.remove('fixed');
+            }
+        });
+    }
 
     function initPriceSlider() {
 
@@ -105,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // синхронизация input → slider
+        // Синхронизация input → slider
         minInput.addEventListener('change', function () {
             jQuery(slider).slider('values', 0, this.value);
         });
@@ -115,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // запуск
-    document.addEventListener('DOMContentLoaded', initPriceSlider);
+    // Запуск
+    initPriceSlider();
+
 });

@@ -1475,16 +1475,6 @@ function cwc_shop_filters_shortcode()
 
 
             <div class="cwc-filter-actions">
-
-                <!-- <button
-                    id="cwc-apply-filters"
-                    class="cwc-apply-button">
-
-                    Показать результаты
-
-                </button> -->
-
-
                 <button
                     id="cwc-reset-filters"
                     class="cwc-reset-button">
@@ -1492,6 +1482,16 @@ function cwc_shop_filters_shortcode()
                     Сбросить фильтры
 
                 </button>
+                <button
+                    id="cwc-apply-filters"
+                    class="cwc-apply-button">
+
+                    Показать результаты
+
+                </button>
+
+
+
 
             </div>
 
