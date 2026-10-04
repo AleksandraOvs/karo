@@ -84,8 +84,8 @@ body.fixed:after {
     content: '';
     width: 100%;
     height: 100%;
-    position: absolute;
-    z-index: 21;
+    position: fixed;
+    z-index: 400;
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, .7);
@@ -2142,6 +2142,7 @@ footer.footer * .menu {
     }
 
     .mob-menu ul li a {
+        height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -945,6 +945,11 @@
 
   .filter-item__title {
     margin-bottom: .5em;
+    font-size: 14px;
+  }
+
+  .cwc-filter-actions {
+    justify-content: space-between;
   }
 
   .filter {

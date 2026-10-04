@@ -1195,8 +1195,9 @@ h2.woocommerce-loop-product__title {
     }
 
     .product-card__attribute span {
-        padding: .2em .5em;
+        padding: .3em .5em;
         font-size: 14px;
+        line-height: 1;
     }
 
     .product-card__attributes-row.product-card__attributes-row--actions {
@@ -1359,14 +1360,13 @@ h2.woocommerce-loop-product__title {
 
     .filters-head {
         position: fixed;
-        bottom: 40px;
+        bottom: 0;
         z-index: 500;
         left: 0;
         width: 100%;
         background: #fff;
         padding: .5em;
-        padding-bottom: 0.5em;
-        padding-bottom: 1.5em;
+        padding-bottom: 70px;
     }
 
 
