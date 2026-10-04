@@ -2215,12 +2215,13 @@ footer.footer * .menu {
     }
 
     .mob-menu ul li a {
-        padding: 1em .5em;
+        padding: .2em;
+        height: 60px;
     }
 
     .mob-menu ul li a img {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
     }
 
     .header-logo {
