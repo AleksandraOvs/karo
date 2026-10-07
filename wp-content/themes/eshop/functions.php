@@ -49,6 +49,10 @@ function e_shop_enqueue_styles()
     if (is_product()) {
         wp_enqueue_style('product-tabs-styles', get_template_directory_uri() . '/css/woo-product-tabs-styles.css');
     }
+
+    if (is_cart()) {
+        wp_enqueue_style('cart-page-styles', get_template_directory_uri() . '/css/cart.css');
+    }
     //wp_enqueue_style('e-shop-styles', get_stylesheet_directory_uri());
     wp_enqueue_script('animations-script', get_stylesheet_directory_uri() . '/js/animations.js', array(), _S_VERSION, true);
     wp_enqueue_script('woo-scripts', get_stylesheet_directory_uri() . '/js/woo-scripts.js', array(), _S_VERSION, true);
