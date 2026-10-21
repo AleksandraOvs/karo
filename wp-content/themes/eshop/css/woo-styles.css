@@ -512,15 +512,21 @@ a.button.wc-forward:hover {
     position: relative;
     width: 100%;
     margin-left: 0;
-    border-bottom: 1px solid var(--theme-color-primary);
+    border-bottom: 2px solid #d5d5d5;
     border-radius: 15px;
     background: var(--light-grey);
+    transition: all .5s var(--transition);
+}
+
+.woocommerce .products .product:hover,
+.products .product:hover {
+    border-bottom: 2px solid transparent;
 }
 
 .products-nav {
     position: sticky;
     top: 90.8px;
-    z-index: 10;
+    z-index: 5;
     background: #fff;
     list-style: none;
     display: grid;
