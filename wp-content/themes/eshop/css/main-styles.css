@@ -555,15 +555,17 @@ header .fixed-container {
 ========================================= */
 
 .hero {
-    height: max-content;
     display: flex;
-    min-height: 85vh;
+    height: 85vh;
     overflow: hidden;
     padding-top: 0;
     padding-bottom: 0;
     position: relative;
     flex-direction: column;
-    justify-content: flex-end;
+}
+
+.hero .container {
+    height: 100%;
 }
 
 .hero__image {

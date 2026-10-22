@@ -1,7 +1,8 @@
 .hero__inner {
     background: var(--hero-gradient);
-    padding: 12vh 0 5vh;
+    padding: 20vh 0 5vh;
     color: #fff;
+    height: 100%;
 }
 
 h1.hero__title {
