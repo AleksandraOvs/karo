@@ -537,6 +537,11 @@ a.button.wc-forward:hover {
     padding: 1em;
 }
 
+.product-info-card .products-nav {
+    position: relative;
+    top: unset;
+}
+
 .products-nav li {
     padding-bottom: 5px;
     border-bottom: 1px solid var(--theme-color-primary);
