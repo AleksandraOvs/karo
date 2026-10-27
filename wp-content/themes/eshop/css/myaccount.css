@@ -101,11 +101,32 @@
 
 .woocommerce form.login,
 .woocommerce form.register {
-    border: 2px solid var(--theme-color-beige);
-    padding: 20px;
+    border: none;
+    padding: 0;
     margin: 0;
+    margin-top: 0px;
     text-align: left;
     border-radius: 0 0 5px 5px;
+    margin-top: 2em;
+}
+
+.woocommerce-form.woocommerce-form-login.login>p.form-row {
+    flex-direction: column-reverse;
+    display: flex;
+    align-items: center;
+}
+
+.woocommerce form .form-row::after,
+.woocommerce form .form-row::before,
+.woocommerce-page form .form-row::after,
+.woocommerce-page form .form-row::before {
+    content: none;
+    display: none;
+}
+
+.woocommerce-form-row.form-row span.password-input {
+    display: block;
+    width: 100%;
 }
 
 .auth-tabs__content {
@@ -184,4 +205,34 @@ button.woocommerce-button.button.woocommerce-form-register__submit {
 .woocommerce-form-login__rememberme input {
     width: 16px;
     height: 16px;
+}
+
+.woocommerce-privacy-policy-text {
+    display: none;
+}
+
+.woocommerce-form.woocommerce-form-register.register>p.form-row label {
+    text-align: left;
+    line-height: 140%;
+}
+
+.form-row.submit-form button.woocommerce-form-register__submit {
+    margin: 0 auto;
+    display: block;
+}
+
+@media(max-width: 480px) {
+    #customer_login {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .auth-tabs__title {
+        font-size: 18px;
+    }
+
+    .woocommerce-form.woocommerce-form-register.register>p {
+        text-align: center;
+        font-size: 14px;
+    }
 }

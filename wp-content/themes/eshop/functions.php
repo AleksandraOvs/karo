@@ -64,6 +64,7 @@ function e_shop_enqueue_styles()
     wp_enqueue_script('share-script', get_stylesheet_directory_uri() . '/js/share.js', array(), _S_VERSION, true);
     wp_enqueue_script('popups-script', get_stylesheet_directory_uri() . '/js/popups.js', array(), _S_VERSION, true);
     wp_enqueue_script('product-info', get_stylesheet_directory_uri() . '/js/popup-product-info.js', array(), _S_VERSION, true);
+    wp_enqueue_script('ma-scripts', get_stylesheet_directory_uri() . '/js/myaccount.js', array(), _S_VERSION, true);
 
 
     wp_localize_script(
