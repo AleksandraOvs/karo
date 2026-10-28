@@ -164,4 +164,12 @@ add_action('carbon_fields_register_fields', function () {
                         ->set_width(45),
                 ]),
         ]);
+
+    Container::make('term_meta', 'Настройки формы')
+        ->where('term_taxonomy', '=', 'pa_form')
+        ->add_fields([
+            Field::make('image', 'pa_form_icon', 'Иконка формы')
+                ->set_value_type('url')
+                ->set_help_text('Загрузите или выберите иконку из медиатеки.')
+        ]);
 });

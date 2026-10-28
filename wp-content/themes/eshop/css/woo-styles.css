@@ -572,6 +572,23 @@ a.button.wc-forward:hover {
     font-size: 14px;
 }
 
+.product-card__attribute.--pa-form {}
+
+.product-card__attribute.--pa-form .product-card__attribute-value {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.product-card__attribute-value img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    object-position: center;
+    padding: 1px;
+}
+
 .woocommerce .products .product .price span {
     display: inline;
     color: var(--theme-color-primary);

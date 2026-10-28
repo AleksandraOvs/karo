@@ -11,11 +11,34 @@ if (! $product instanceof WC_Product) {
 
 <div class="product-card__attributes-row product-card__attributes-row--specs">
 
-    <div class="product-card__attribute">
+    <div class="product-card__attribute --pa-form">
+
         <span class="product-card__attribute-value">
             <?php
-            $form = $product->get_attribute('pa_form');
-            echo $form ? esc_html($form) : '—';
+            $terms = get_the_terms($product->get_id(), 'pa_form');
+
+            if ($terms && !is_wp_error($terms)) :
+                foreach ($terms as $term) :
+                    $icon = carbon_get_term_meta($term->term_id, 'pa_form_icon');
+            ?>
+
+
+                    <?php if ($icon) : ?>
+                        <img
+                            class="product-card__attribute-icon"
+                            src="<?php echo esc_url($icon); ?>"
+                            alt=""
+                            aria-hidden="true">
+                    <?php endif; ?>
+
+                    <?php echo esc_html($term->name); ?>
+
+
+            <?php
+                endforeach;
+            else :
+                echo '—';
+            endif;
             ?>
         </span>
     </div>
