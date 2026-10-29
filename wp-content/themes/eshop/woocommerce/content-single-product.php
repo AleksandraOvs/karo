@@ -71,17 +71,22 @@ if (post_password_required()) {
 
                         </form>
 
-                        <button
+                        <!-- <button
                             type="button"
                             class="button buy-one-click"
                             data-popup="buy-one-click-popup"
-                            data-product-id="<?php echo esc_attr($product->get_id()); ?>"
-                            data-product-name="<?php echo esc_attr($product->get_name()); ?>"
-                            data-product-sku="<?php echo esc_attr($product->get_sku() ?: '—'); ?>"
-                            data-product-price="<?php echo esc_attr(wp_strip_all_tags($product->get_price_html())); ?>"
-                            data-product-url="<?php echo esc_url($product->get_permalink()); ?>">
+                            data-product-id="<?php //echo esc_attr($product->get_id()); 
+                                                ?>"
+                            data-product-name="<?php //echo esc_attr($product->get_name()); 
+                                                ?>"
+                            data-product-sku="<?php //echo esc_attr($product->get_sku() ?: '—'); 
+                                                ?>"
+                            data-product-price="<?php //echo esc_attr(wp_strip_all_tags($product->get_price_html())); 
+                                                ?>"
+                            data-product-url="<?php //echo esc_url($product->get_permalink()); 
+                                                ?>">
                             Купить в один клик
-                        </button>
+                        </button> -->
 
                     <?php endif; ?>
 
