@@ -124,7 +124,8 @@ if (is_shop()) {
     // Показываем все товары
     $args = [
         'post_type'      => 'product',
-        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'posts_per_page' => 18,
         'orderby'        => 'menu_order',
         'order'          => 'ASC',
     ];
@@ -152,11 +153,26 @@ if (is_shop()) {
             }
             ?>
 
-            <ul class="products products-<?php echo esc_attr($columns); ?>">
+            <ul
+                class="products products-<?php echo esc_attr($columns); ?> js-products-list"
+                data-page-type="shop"
+                data-category-id="0"
+                data-page="1"
+                data-has-more="<?php echo $products->found_posts > $products->post_count ? '1' : '0'; ?>">
                 <?php while ($products->have_posts()) : $products->the_post(); ?>
                     <?php wc_get_template_part('content', 'product'); ?>
                 <?php endwhile; ?>
             </ul>
+
+            <div class="products-loader" hidden>
+                <span class="loading-dots" aria-label="Загрузка">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+
+            <div class="products-load-more-trigger" aria-hidden="true"></div>
         </div>
 
 
@@ -195,7 +211,8 @@ if (is_shop()) {
     // Показываем товары текущей категории
     $args = [
         'post_type'      => 'product',
-        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'posts_per_page' => 18,
         'orderby'        => 'menu_order',
         'order'          => 'ASC',
         'tax_query'      => [
@@ -219,12 +236,26 @@ if (is_shop()) {
         }
         ?>
 
-        <ul class="products products-<?php echo esc_attr($columns); ?>">
+        <ul
+            class="products products-<?php echo esc_attr($columns); ?> js-products-list"
+            data-page-type="category"
+            data-category-id="<?php echo esc_attr($current_cat->term_id); ?>"
+            data-page="1"
+            data-has-more="<?php echo $products->found_posts > $products->post_count ? '1' : '0'; ?>">
             <?php while ($products->have_posts()) : $products->the_post(); ?>
                 <?php wc_get_template_part('content', 'product'); ?>
             <?php endwhile; ?>
         </ul>
 
+        <div class="products-loader" hidden>
+            <span class="loading-dots" aria-label="Загрузка">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </div>
+
+        <div class="products-load-more-trigger" aria-hidden="true"></div>
 
 
 <?php endif;

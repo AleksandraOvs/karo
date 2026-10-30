@@ -248,6 +248,7 @@ require get_stylesheet_directory() . '/inc/cpt.php';
 require get_template_directory() . '/wishlist/wl.php';
 require get_template_directory() . '/my-account/ma-functions.php';
 require get_template_directory() . '/inc/popup-product-info.php';
+require get_template_directory() . '/inc/products-load-more.php';
 
 
 

@@ -1021,6 +1021,49 @@ h2.woocommerce-loop-product__title {
     border-bottom: 1px dotted var(--theme-color-grey);
 }
 
+.loading-dots {
+    margin-top: 4em;
+    margin-bottom: 4em;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2em;
+    align-items: center;
+    gap: 0.7em;
+}
+
+.loading-dots span {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--theme-color-accent);
+
+    animation: loading-dot 1.2s ease-in-out infinite;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes loading-dot {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        background: var(--theme-color-accent);
+    }
+
+    30% {
+        transform: translateY(-6px);
+        background: var(--theme-color-primary);
+    }
+}
+
 @media (max-width: 1400px) {
 
     .product-inner__content__col._benefits-col {

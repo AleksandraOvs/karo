@@ -232,6 +232,17 @@
         return filters;
     }
 
+    window.cwcGetCurrentFilters = function (wrapper) {
+
+        const $wrapper = $(wrapper);
+
+        if (!$wrapper.length) {
+            return {};
+        }
+
+        return collectFilters($wrapper);
+    };
+
 
     /* =====================================================
      * AJAX UPDATE
@@ -255,8 +266,19 @@
             wrapper
         );
 
+        window.cwcGetCurrentFilters = function (wrapper) {
 
-        const $products = $('.products').first();
+            const $wrapper = $(wrapper);
+
+            if (!$wrapper.length) {
+                return {};
+            }
+
+            return collectFilters($wrapper);
+        };
+
+
+        const $products = $('.js-products-list').first();
 
 
         if (!$products.length) {
@@ -306,7 +328,6 @@
                     return;
                 }
 
-
                 $products
                     .html(
                         response.data.html
@@ -315,6 +336,16 @@
                         200,
                         1
                     );
+
+                // Сбрасываем состояние бесконечной прокрутки.
+                $products.attr('data-page', '1');
+
+                $products.attr(
+                    'data-has-more',
+                    response.data.has_more ? '1' : '0'
+                );
+
+                window.cwcCurrentPage = 1;
 
 
                 /*
@@ -342,9 +373,7 @@
                     );
                 }
 
-
             },
-
 
             error: function (
                 xhr,
