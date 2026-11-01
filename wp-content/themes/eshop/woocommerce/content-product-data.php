@@ -13,7 +13,7 @@ if (! $product instanceof WC_Product) {
 
     <div class="product-card__attribute --pa-form">
 
-        <span class="product-card__attribute-value">
+        <div class="product-card__attribute-value">
             <?php
             $terms = get_the_terms($product->get_id(), 'pa_form');
 
@@ -31,7 +31,7 @@ if (! $product instanceof WC_Product) {
                             aria-hidden="true">
                     <?php endif; ?>
 
-                    <?php echo esc_html($term->name); ?>
+                    <span><?php echo esc_html($term->name); ?></span>
 
 
             <?php
@@ -40,7 +40,7 @@ if (! $product instanceof WC_Product) {
                 echo '—';
             endif;
             ?>
-        </span>
+        </div>
     </div>
 
     <div class="product-card__attribute">

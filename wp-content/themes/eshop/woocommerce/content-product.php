@@ -37,6 +37,9 @@ $compare_img = '<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmln
 
         <div class="product-card__attributes-row product-card__attributes-row--actions">
 
+            <?php
+            get_template_part('template-parts/buttons');
+            ?>
             <div class="product-card__sku">
 
                 <span class="product-card__sku-label">
@@ -53,9 +56,6 @@ $compare_img = '<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmln
 
             </div>
 
-            <?php
-            get_template_part('template-parts/buttons');
-            ?>
 
         </div>
 

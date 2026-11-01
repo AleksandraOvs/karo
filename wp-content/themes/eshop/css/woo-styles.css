@@ -582,11 +582,21 @@ a.button.wc-forward:hover {
 }
 
 .product-card__attribute-value img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     object-position: center;
     padding: 1px;
+}
+
+.product-card__attribute.--pa-form .product-card__attribute-value span {
+    margin: 0;
+}
+
+.product-card__attribute.--pa-form .product-card__attribute-value {
+    display: flex;
+    justify-content: center;
+    gap: .3em;
 }
 
 .woocommerce .products .product .price span {
@@ -605,6 +615,7 @@ a.button.wc-forward:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row-reverse;
 }
 
 .product-card__attributes-row.product-card__attributes-row--specs {
@@ -1249,6 +1260,7 @@ h2.woocommerce-loop-product__title {
         letter-spacing: 0;
         font-weight: 400;
         font-size: 12px;
+        line-height: 1;
     }
 
     .products-nav {
@@ -1257,7 +1269,7 @@ h2.woocommerce-loop-product__title {
 
     .woocommerce .products .product,
     .products .product {
-        padding: .5em 1em;
+        padding: .5em;
     }
 
     .product-card__attributes-row {
@@ -1533,10 +1545,15 @@ h2.woocommerce-loop-product__title {
 
     .product-card__sku {
         font-size: 12px;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        margin-top: .5em;
     }
 
     .product-card__attributes-row.product-card__attributes-row--specs {
         padding-bottom: .2em;
+        align-items: center;
     }
 
     /* .product-card__buttons .product-card__cart {
@@ -1559,6 +1576,41 @@ h2.woocommerce-loop-product__title {
 
     .product-card__attributes {
         gap: 0;
+    }
+
+    .product-card__attribute.--pa-form .product-card__attribute-value {
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        gap: 0;
+    }
+
+    .product-card__attribute-value img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        object-position: center;
+        padding: 1px;
+    }
+
+    .product-card__attribute.--pa-form .product-card__attribute-value span {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        position: relative;
+
+    }
+
+    .product-card__buttons>button,
+    .custom-wishlist-btn {
+        display: flex;
+        padding: .2em;
+        height: 30px;
+    }
+
+    .woocommerce .products .product .product-card__cart .button {
+        height: 30px;
     }
 
 }
